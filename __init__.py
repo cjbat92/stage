@@ -6,7 +6,7 @@ from urllib.request import urlopen
 import sqlite3
 import requests
                                                                                                                                        
-app = Flask(__name__)                                                                                                                  
+app = Flask(__name__)                                                                                                                   
                                                                                                                                        
 @app.route('/')
 def hello_world():
