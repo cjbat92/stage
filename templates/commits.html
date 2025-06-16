@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Commits par minute</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-      google.charts.load('current', {packages: ['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<head>
+  <meta charset="utf-8">
+  <title>Commits par minute</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable({{ chart_data|tojson }});
+    function drawChart() {
+      const data = google.visualization.arrayToDataTable([
+        ['Minute', 'Commits'],
+        {% for minute, count in chart_data %}
+          ['{{ minute }}', {{ count }}],
+        {% endfor %}
+      ]);
 
-        var options = {
-          title: 'Commits par minute',
-          hAxis: { title: 'Minute', format: '00' },
-          vAxis: { title: 'Nombre de commits' },
-          legend: { position: 'none' },
-          colors: ['#f06292']
-        };
+      const options = {
+        title: 'Nombre de commits par minute',
+        hAxis: { title: 'Minute' },
+        vAxis: { title: 'Commits' },
+        legend: 'none',
+        colors: ['#1f77b4']
+      };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <h1 style="text-align:center;">Statistiques de Commits</h1>
-    <div id="chart_div" style="width: 90%; height: 500px; margin: auto;"></div>
-  </body>
+      const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <h2>Graphique des commits</h2>
+  <div id="chart_div" style="width: 800px; height: 500px;"></div>
+</body>
 </html>
