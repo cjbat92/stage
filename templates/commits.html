@@ -1,36 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Commits par minute</title>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script>
-    google.charts.load('current', {packages:['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      const data = google.visualization.arrayToDataTable([
-        ['Minute', 'Commits'],
-        {% for minute, count in chart_data %}
-          ['{{ minute }}', {{ count }}],
-        {% endfor %}
-      ]);
-
-      const options = {
-        title: 'Nombre de commits par minute',
-        hAxis: { title: 'Minute' },
-        vAxis: { title: 'Commits' },
-        legend: 'none',
-        colors: ['#1f77b4']
-      };
-
-      const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
-  </script>
+    <meta charset="UTF-8" />
+    <title>Graphique des commits</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #ffe6f0; /* rose pâle */
+            color: #900048; /* rose foncé */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 40px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        canvas {
+            max-width: 700px;
+            margin: auto;
+            background: #fff0f6;
+            border: 2px solid #900048;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h2>Graphique des commits</h2>
-  <div id="chart_div" style="width: 800px; height: 500px;"></div>
+    <h1>Graphique des commits par minute</h1>
+    <canvas id="commitsChart"></canvas>
+
+    <script>
+        const labels = {{ labels|tojson }};
+        const values = {{ values|tojson }};
+
+        const ctx = document.getElementById('commitsChart').getContext('2d');
+        const commitsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels.map(label => label.toString()), // convertir en string si besoin
+                datasets: [{
+                    label: 'Nombre de commits',
+                    data: values,
+                    backgroundColor: 'rgba(255, 105, 180, 0.6)', // rose vif transparent
+                    borderColor: 'rgba(255, 20, 147, 1)', // rose vif
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Minute'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#900048',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
