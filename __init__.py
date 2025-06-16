@@ -29,8 +29,8 @@ def commits_graph():
     url = "https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits"
     try:
         with urlopen(url) as response:
-        content = response.read()
-        data = json.loads(content)
+            content = response.read()
+            data = json.loads(content)
     except Exception as e:
         return f"Erreur : {e}"
 
