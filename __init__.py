@@ -32,7 +32,7 @@ def commits_graph():
             content = response.read()
             data = json.loads(content)
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return f"Erreur : {e}"
 
     minutes_count = {}
 
@@ -43,13 +43,12 @@ def commits_graph():
             minute = date_obj.minute
             minutes_count[minute] = minutes_count.get(minute, 0) + 1
 
-    # Préparation des données pour le HTML/Chart.js
-    sorted_minutes = sorted(minutes_count.keys())
-    labels = [str(m).zfill(2) for m in sorted_minutes]
-    values = [minutes_count[m] for m in sorted_minutes]
+    # Tri des minutes et conversion en chaînes
+    labels = list(map(str, sorted(minutes_count.keys())))
+    values = [minutes_count[int(minute)] for minute in labels]
 
     return render_template('commits.html', labels=labels, values=values)
-
+  
 @app.route('/tawarano/')
 def meteo():
     response = urlopen('https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx')
