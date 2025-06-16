@@ -48,7 +48,7 @@ def commits_graph():
     labels = [str(m).zfill(2) for m in sorted_minutes]
     values = [minutes_count[m] for m in sorted_minutes]
 
-    return render_template_string('commits.html', labels=labels, values=values)
+    return render_template('commits.html', labels=labels, values=values)
 
 @app.route('/tawarano/')
 def meteo():
