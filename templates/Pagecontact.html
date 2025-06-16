@@ -5,86 +5,133 @@
   <title>Contactez-nous</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
       font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .circle1 {
+      width: 300px;
+      height: 300px;
+      background: #ffe9ec;
+      top: -100px;
+      left: -100px;
+    }
+
+    .circle2 {
+      width: 200px;
+      height: 200px;
+      background: #c1f5ff;
+      bottom: -80px;
+      right: -80px;
     }
 
     .contact-form {
-      background: white;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.95);
       padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      width: 100%;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 90%;
       max-width: 500px;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
-      margin-top: 0;
       text-align: center;
       color: #333;
+      margin-bottom: 20px;
     }
 
     label {
-      display: block;
-      margin: 15px 0 5px;
       font-weight: 500;
-      color: #444;
+      color: #555;
+      display: block;
+      margin-top: 15px;
     }
 
     input, textarea {
       width: 100%;
       padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      margin-top: 5px;
+      border-radius: 12px;
+      border: 2px solid #ddd;
+      transition: border-color 0.3s, background-color 0.3s;
       font-size: 1rem;
-      transition: border 0.3s ease;
     }
 
     input:focus, textarea:focus {
-      border-color: #74ebd5;
+      border-color: #a6c1ee;
+      background-color: #f0f8ff;
       outline: none;
     }
 
     textarea {
+      min-height: 120px;
       resize: vertical;
-      min-height: 100px;
     }
 
     button {
-      margin-top: 20px;
-      background-color: #74ebd5;
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
       border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 500;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
       color: white;
       cursor: pointer;
-      width: 100%;
       transition: background 0.3s ease;
     }
 
     button:hover {
-      background-color: #57c9b6;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      background: linear-gradient(45deg, #fbc2eb, #a6c1ee);
     }
   </style>
 </head>
 <body>
+
+  <!-- Cercles décoratifs -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+
   <form class="contact-form">
-    <h2>Contactez-nous</h2>
+    <h2>🎨 Contactez-moi</h2>
+
     <label for="prenom">Prénom</label>
     <input type="text" id="prenom" name="prenom" placeholder="Votre prénom">
 
@@ -94,7 +141,7 @@
     <label for="message">Message</label>
     <textarea id="message" name="message" placeholder="Votre message..."></textarea>
 
-    <button type="submit">Envoyer</button>
+    <button type="submit">Envoyer ✉️</button>
   </form>
 </body>
 </html>
