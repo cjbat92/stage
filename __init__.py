@@ -9,7 +9,7 @@ import sqlite3
 app = Flask(__name__)                                                                                                                   
                                                                                                                                        
 @app.route('/')
-def CJBAT():
+def index():
     return render_template('index.html')
 
 @app.route("/about/")
