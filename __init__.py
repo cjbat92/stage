@@ -9,57 +9,36 @@ import sqlite3
 app = Flask(__name__)                                                                                                                   
                                                                                                                                        
 @app.route('/')
-def hello_world():
-    return render_template('hello.html')
+def CJBAT():
+    return render_template('index.html')
 
-@app.route("/contact/")
-def Mapagedecontact():
-    return render_template("Pagecontact.html")
+@app.route("/about/")
+def A'propos():
+    return render_template("about.html")
 
-@app.route("/rapport/")
-def mongraphique():
-    return render_template("graphique.html")
+@app.route("/services/")
+def Nos services():
+    return render_template("services.html")
 
-@app.route("/histogramme/")
-def colonnes():
-    return render_template("histogrammeTawarano.html")
+@app.route("/projects/")
+def Realisations():
+    return render_template("projects.html")
 
-@app.route('/commits/')
-def commits_graph():
-    url = "https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits"
-    try:
-        with urlopen(url) as response:
-            content = response.read()
-            data = json.loads(content)
-    except Exception as e:
-        return f"Erreur : {e}"
+@app.route('/api/contact', methods=['POST'])
+def api_contact():
+    data = request.get_json()
+    name = data.get("name")
+    email = data.get("email")
+    message = data.get("message")
 
-    minutes_count = {}
+    # 🔧 Ici tu peux :
+    # - Envoyer un email
+    # - Enregistrer dans une base de données
+    # - Log dans un fichier
 
-    for commit in data:
-        date_str = commit.get("commit", {}).get("author", {}).get("date")
-        if date_str:
-            date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
-            minute = date_obj.minute
-            minutes_count[minute] = minutes_count.get(minute, 0) + 1
+    print("Message reçu :", name, email, message)
 
-    # Tri des minutes et conversion en chaînes
-    labels = list(map(str, sorted(minutes_count.keys())))
-    values = [minutes_count[int(minute)] for minute in labels]
-
-    return render_template('commits.html', labels=labels, values=values)
-  
-@app.route('/tawarano/')
-def meteo():
-    response = urlopen('https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx')
-    raw_content = response.read()
-    json_content = json.loads(raw_content.decode('utf-8'))
-    results = []
-    for list_element in json_content.get('list', []):
-        dt_value = list_element.get('dt')
-        temp_day_value = list_element.get('main', {}).get('temp') - 273.15 # Conversion de Kelvin en °c 
-        results.append({'Jour': dt_value, 'temp': temp_day_value})
-    return jsonify(results=results)
+    return jsonify({"message": "Merci pour votre message, nous vous répondrons rapidement."})
 
 
   
