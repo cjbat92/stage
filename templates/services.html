@@ -61,17 +61,19 @@
 <body>
 
   <header>
+  <div class="container">
     <h1>CJ BAT</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="projects.html">Réalisations</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="{{ url_for('index') }}">Accueil</a></li>
+        <li><a href="{{ url_for('about') }}">À propos</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
 
   <div class="container">
     <h2>Nos services</h2>
