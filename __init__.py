@@ -13,15 +13,15 @@ def CJBAT():
     return render_template('index.html')
 
 @app.route("/about/")
-def A_propos():
+def about():
     return render_template("about.html")
 
 @app.route("/services/")
-def Nos_services():
+def services():
     return render_template("services.html")
 
 @app.route("/projects/")
-def Realisations():
+def projects():
     return render_template("projects.html")
 
 @app.route('/contact/')
