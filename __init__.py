@@ -13,11 +13,11 @@ def CJBAT():
     return render_template('index.html')
 
 @app.route("/about/")
-def propos():
+def A_propos():
     return render_template("about.html")
 
 @app.route("/services/")
-def Nos services():
+def Nos_services():
     return render_template("services.html")
 
 @app.route("/projects/")
