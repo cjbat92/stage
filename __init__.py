@@ -24,6 +24,10 @@ def Nos_services():
 def Realisations():
     return render_template("projects.html")
 
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/api/contact', methods=['POST'])
 def api_contact():
     data = request.get_json()
