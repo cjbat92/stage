@@ -65,8 +65,8 @@
 
     /* ----- HERO ----- */
     .hero {
-      /* Change l'image ici si tu veux utiliser ta photo locale */
-      background: url('images/ma_photo.jpg') center/cover no-repeat;
+      /* Remplace l'URL par ta photo locale si tu veux */
+      background: url('static/imageaccueil.jpg') center/cover no-repeat;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -75,18 +75,34 @@
       text-align: center;
       color: white;
       padding: 0 20px;
+      position: relative;
+    }
+
+    /* Overlay pour rendre le texte visible si image claire */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 2;
     }
 
     .hero h2 {
       font-size: 2.5em;
       margin-bottom: 10px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
 
     .hero p {
       font-size: 1.2em;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
 
     .hero .btn {
@@ -182,6 +198,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -190,15 +207,58 @@
       <h1>CJ BAT</h1>
       <nav>
         <ul>
-          <li><a href="{{ url_for('index') }}">Accueil</a></li> 
-          <li><a href="{{ url_for('services') }}">Services</a></li> 
-          <li><a href="{{ url_for('projects') }}">Réalisations</a></li> 
-          <li><a href="{{ url_for('contact') }}">Contact</a></li>
-          <li><a href="{{ url_for('about') }}">À propos</a></li>
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Réalisations</a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section cl
+  <section class="hero">
+    <h2>Votre partenaire de confiance pour tous vos travaux</h2>
+    <p>Rénovation - Construction - Amélioration de l'habitat</p>
+    <a href="contact.html" class="btn">Demander un devis</a>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="services-preview">
+    <div class="container">
+      <h3>Nos services</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Rénovation intérieure</h4>
+          <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
+        </div>
+        <div class="card">
+          <h4>Maçonnerie générale</h4>
+          <p>Fondations, murs, dalles, agrandissements.</p>
+        </div>
+        <div class="card">
+          <h4>Toiture & couverture</h4>
+          <p>Pose, rénovation, étanchéité, charpente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h3>Un projet ? Contactez-nous dès maintenant</h3>
+      <a href="contact.html" class="btn">Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CJ BAT - Tous droits réservés</p>
+    </div>
+  </footer>
+
+</body>
+</html>
