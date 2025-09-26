@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CJ BAT - Entreprise de Bâtiment</title>
-
   <style>
     /* ----- RESET & GLOBAL ----- */
     * {
@@ -66,14 +65,15 @@
 
     /* ----- HERO ----- */
     .hero {
-      background: #333 url('https://images.unsplash.com/photo-1581090700227-1e8e5f934659?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      height: 100vh; /* prend toute la hauteur de l'écran */
-      color: white;
+      /* Change l'image ici si tu veux utiliser ta photo locale */
+      background: url('images/ma_photo.jpg') center/cover no-repeat;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      color: white;
       padding: 0 20px;
     }
 
@@ -182,68 +182,23 @@
     }
   </style>
 </head>
-
 <body>
 
+  <!-- HEADER -->
   <header>
-  <div class="container">
-    <h1>CJ BAT</h1>
-    <nav>
-      <ul>
-        <li><a href="{{ url_for('index') }}">Accueil</a></li>
-        <li><a href="{{ url_for('about') }}">À propos</a></li>
-        <li><a href="{{ url_for('services') }}">Services</a></li>
-        <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+    <div class="container">
+      <h1>CJ BAT</h1>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Accueil</a></li> 
+          <li><a href="{{ url_for('services') }}">Services</a></li> 
+          <li><a href="{{ url_for('projects') }}">Réalisations</a></li> 
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+          <li><a href="{{ url_for('about') }}">À propos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h2>Votre partenaire de confiance pour tous vos travaux</h2>
-      <p>Rénovation - Construction - Amélioration de l'habitat</p>
-      <a href="contact.html" class="btn">Demander un devis</a>
-    </div>
-  </section>
-
-  <!-- SERVICES PREVIEW -->
-  <section class="services-preview">
-    <div class="container">
-      <h3>Nos services</h3>
-      <div class="grid">
-        <div class="card">
-          <h4>Rénovation intérieure</h4>
-          <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
-        </div>
-        <div class="card">
-          <h4>Maçonnerie générale</h4>
-          <p>Fondations, murs, dalles, agrandissements.</p>
-        </div>
-        <div class="card">
-          <h4>Toiture & couverture</h4>
-          <p>Pose, rénovation, étanchéité, charpente.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h3>Un projet ? Contactez-nous dès maintenant</h3>
-      <a href="contact.html" class="btn">Nous contacter</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 CJ BAT - Tous droits réservés</p>
-    </div>
-  </footer>
-
-</body>
-</html>
+  <section cl
