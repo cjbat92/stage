@@ -122,8 +122,10 @@
 
     /* ----- SERVICES ----- */
     .services-preview {
-      padding: 60px 0;
-      background: #fff;
+      padding: 60px 20px;
+      background: transparent; /* plus de blanc */
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7); /* pour la lisibilité */
     }
 
     .services-preview h3 {
@@ -140,13 +142,14 @@
     }
 
     .card {
-      background: #eee;
+      background: rgba(0,0,0,0.6); /* petit fond noir transparent */
+      color: white;
       padding: 20px;
       flex: 1 1 300px;
       max-width: 300px;
-      border-radius: 5px;
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5); 
     }
 
     .card h4 {
