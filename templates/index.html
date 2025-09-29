@@ -65,10 +65,8 @@
 
     /* ----- HERO ----- */
     .hero {
-      /* Remplace l'URL par ta photo locale si tu veux */
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      height: 60vh;
-      min-height: 400px;
+      min-height: 100vh; /* prend toute la hauteur de l'écran */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -79,7 +77,6 @@
       position: relative;
     }
 
-    /* Overlay pour rendre le texte visible si image claire */
     .hero::before {
       content: "";
       position: absolute;
@@ -91,9 +88,10 @@
       z-index: 1;
     }
 
-    .hero > * {
+    .hero .overlay-content {
       position: relative;
       z-index: 2;
+      width: 100%;
     }
 
     .hero h2 {
@@ -120,20 +118,14 @@
       background: darkorange;
     }
 
-    /* ----- SERVICES ----- */
+    /* ----- SERVICES (intégrés dans hero) ----- */
     .services-preview {
-      padding: 60px 20px;
-      background: transparent;
-      color: white;
-      margin-top: -50px; /* chevauche l’image */
-      position: relative;
-      z-index: 3;
+      margin-top: 50px;
     }
 
     .services-preview h3 {
-      text-align: center;
       font-size: 2em;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: white;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
@@ -146,14 +138,14 @@
     }
 
     .card {
-      background: rgba(0,0,0,0.6); /* petit fond noir transparent */
+      background: rgba(0,0,0,0.6);
       color: white;
       padding: 20px;
       flex: 1 1 300px;
       max-width: 300px;
       border-radius: 8px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .card h4 {
@@ -214,39 +206,40 @@
     <div class="container">
       <h1>CJ BAT</h1>
       <nav>
-        <ul><li><a href="{{ url_for('index') }}">Accueil</a></li> 
-            <li><a href="{{ url_for('about') }}">À propos</a></li> 
-            <li><a href="{{ url_for('services') }}">Services</a></li> 
-            <li><a href="{{ url_for('projects') }}">Réalisations</a></li> 
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Accueil</a></li>
+          <li><a href="{{ url_for('about') }}">À propos</a></li>
+          <li><a href="{{ url_for('services') }}">Services</a></li>
+          <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO + SERVICES -->
   <section class="hero">
-    <h2>Votre partenaire de confiance pour tous vos travaux</h2>
-    <p>Rénovation - Construction - Amélioration de l'habitat</p>
-    <a href="contact.html" class="btn">Demander un devis</a>
-  </section>
+    <div class="overlay-content">
+      <h2>Votre partenaire de confiance pour tous vos travaux</h2>
+      <p>Rénovation - Construction - Amélioration de l'habitat</p>
+      <a href="contact.html" class="btn">Demander un devis</a>
 
-  <!-- SERVICES PREVIEW -->
-  <section class="services-preview">
-    <div class="container">
-      <h3>Nos services</h3>
-      <div class="grid">
-        <div class="card">
-          <h4>Rénovation intérieure</h4>
-          <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
-        </div>
-        <div class="card">
-          <h4>Maçonnerie générale</h4>
-          <p>Fondations, murs, dalles, agrandissements.</p>
-        </div>
-        <div class="card">
-          <h4>Toiture & couverture</h4>
-          <p>Pose, rénovation, étanchéité, charpente.</p>
+      <!-- Nos services intégrés -->
+      <div class="services-preview">
+        <h3>Nos services</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>Rénovation intérieure</h4>
+            <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
+          </div>
+          <div class="card">
+            <h4>Maçonnerie générale</h4>
+            <p>Fondations, murs, dalles, agrandissements.</p>
+          </div>
+          <div class="card">
+            <h4>Toiture & couverture</h4>
+            <p>Pose, rénovation, étanchéité, charpente.</p>
+          </div>
         </div>
       </div>
     </div>
