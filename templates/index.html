@@ -66,8 +66,7 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      heigt: 100vh;
-      min-height: 400px; /* prend toute la hauteur de l'écran */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -119,28 +118,36 @@
       background: darkorange;
     }
 
-    /* ----- SERVICES (intégrés dans hero) ----- */
+    /* ----- SERVICES EN COLONNES ----- */
     .services-preview {
       margin-top: 50px;
     }
 
     .services-preview h3 {
       font-size: 2em;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       color: white;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-    }
-    
-    .services-preview ul {
-      list-style: none;
-      color: white;
-      font-size: 1.2em;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-      padding: 0;
     }
 
-    .services-preview li {
-      margin: 10px 0;
+    .services-grid {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .service {
+      flex: 1 1 250px;
+      max-width: 300px;
+      color: white;
+      text-align: center;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    }
+
+    .service h4 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
     }
 
     /* ----- CTA ----- */
@@ -181,8 +188,9 @@
         align-items: flex-start;
       }
 
-      .services-preview ul {
-        font-size: 1em;
+      .services-grid {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -213,32 +221,14 @@
       <p>Rénovation - Construction - Amélioration de l'habitat</p>
       <a href="contact.html" class="btn">Demander un devis</a>
 
-      <!-- Nos services simplifiés -->
-       <div class="services-preview">
-         <h3>Nos services</h3>
-         <ul>
-           <li><strong>Rénovation intérieure :</strong> Peinture, plâtrerie, carrelage, revêtements de sol</li>
-           <li><strong>Maçonnerie générale :</strong> Fondations, murs, dalles, agrandissements</li>
-           <li><strong>Toiture & couverture :</strong> Pose, rénovation, étanchéité, charpente</li>
-         </ul>
-       </div>
-     </div>
-   </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h3>Un projet ? Contactez-nous dès maintenant</h3>
-      <a href="contact.html" class="btn">Nous contacter</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 CJ BAT - Tous droits réservés</p>
-    </div>
-  </footer>
-
-</body>
-</html>
+      <!-- Nos services en colonnes -->
+      <div class="services-preview">
+        <h3>Nos services</h3>
+        <div class="services-grid">
+          <div class="service">
+            <h4>Rénovation intérieure</h4>
+            <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
+          </div>
+          <div class="service">
+            <h4>Maçonnerie générale</h4>
+            <p>Fondations, murs, dalles
