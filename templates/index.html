@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CJ BAT - Entreprise de Bâtiment</title>
+  <title>CJBAT - Entreprise de Bâtiment</title>
+
+  <!-- Police Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     /* ----- RESET & GLOBAL ----- */
     * {
@@ -13,7 +20,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       line-height: 1.6;
       color: #333;
       background: #f9f9f9;
@@ -50,7 +57,7 @@
 
     nav a {
       color: white;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     nav a:hover {
@@ -66,8 +73,8 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      height: 70vh; /* au lieu de 100vh */
-      min-height: 400px; /* sécurité pour petits écrans */
+      height: 70vh;
+      min-height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -75,9 +82,10 @@
       text-align: center;
       color: white;
       padding: 40px 20px;
-      position: relative; 
+      position: relative;
     }
 
+    /* Overlay pour le texte */
     .hero::before {
       content: "";
       position: absolute;
@@ -89,15 +97,15 @@
       z-index: 1;
     }
 
-    .hero .overlay-content {
+    .hero > * {
       position: relative;
       z-index: 2;
-      width: 100%;
     }
 
     .hero h2 {
       font-size: 2.5em;
       margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .hero p {
@@ -119,36 +127,48 @@
       background: darkorange;
     }
 
-    /* ----- SERVICES EN COLONNES ----- */
+    /* ----- SERVICES ----- */
     .services-preview {
-      margin-top: 50px;
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
     }
 
     .services-preview h3 {
       font-size: 2em;
       margin-bottom: 40px;
-      color: white;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      font-weight: 700;
+      color: #1e1e1e;
     }
 
-    .services-grid {
+    .grid {
       display: flex;
-      gap: 30px;
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
     }
 
-    .service {
+    .card {
       flex: 1 1 250px;
-      max-width: 300px;
-      color: white;
+      max-width: 280px;
       text-align: center;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
 
-    .service h4 {
-      font-size: 1.3em;
+    .card h4 {
       margin-bottom: 10px;
+      font-weight: 600;
+      color: #1e1e1e;
+    }
+
+    .card p {
+      font-weight: 400;
+      color: #555;
+    }
+
+    .service-icon {
+      font-size: 40px;
+      color: orange;
+      margin-bottom: 15px;
     }
 
     /* ----- CTA ----- */
@@ -177,9 +197,9 @@
     footer {
       background: #333;
       color: #aaa;
-      padding: 20px 0;
+      padding: 15px 0;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* ----- RESPONSIVE ----- */
@@ -189,7 +209,7 @@
         align-items: flex-start;
       }
 
-      .services-grid {
+      .grid {
         flex-direction: column;
         align-items: center;
       }
@@ -215,30 +235,31 @@
     </div>
   </header>
 
-  <!-- HERO + SERVICES -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="overlay-content">
-      <h2>Votre partenaire de confiance pour tous vos travaux</h2>
-      <p>Rénovation - Construction - Amélioration de l'habitat</p>
-      <a href="contact.html" class="btn">Demander un devis</a>
+    <h2>Votre partenaire de confiance pour tous vos travaux</h2>
+    <p>Rénovation - Construction - Amélioration de l'habitat</p>
+    <a href="contact.html" class="btn">Demander un devis</a>
+  </section>
 
-      <!-- Nos services en colonnes -->
-      <div class="services-preview">
-        <h3>Nos services</h3>
-        <div class="services-grid">
-          <div class="service">
-            <h4>Rénovation intérieure</h4>
-            <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
-          </div>
-          <div class="service">
-            <h4>Maçonnerie générale</h4>
-            <p>Fondations, murs, dalles, agrandissements.</p>
-          </div>
-          <div class="service">
-            <h4>Toiture & couverture</h4>
-            <p>Pose, rénovation, étanchéité, charpente.</p>
-          </div>
-        </div>
+  <!-- SERVICES -->
+  <section class="services-preview">
+    <h3>Nos services</h3>
+    <div class="grid">
+      <div class="card">
+        <i class="fa-solid fa-paint-roller service-icon"></i>
+        <h4>Rénovation intérieure</h4>
+        <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-bricks service-icon"></i>
+        <h4>Maçonnerie générale</h4>
+        <p>Fondations, murs, dalles, agrandissements.</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-house-chimney service-icon"></i>
+        <h4>Toiture & couverture</h4>
+        <p>Pose, rénovation, étanchéité, charpente.</p>
       </div>
     </div>
   </section>
