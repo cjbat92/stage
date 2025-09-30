@@ -41,7 +41,7 @@
     header {
       background: #1e1e1e;
       color: white;
-      padding: 10px 0;
+      padding: 20px 0;
     }
 
     header h1 {
@@ -52,7 +52,7 @@
       float: right;
       list-style: none;
       display: flex;
-      gap: 10px;
+      gap: 20px;
     }
 
     nav a {
@@ -73,19 +73,18 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      height: 70vh;
-      min-height: 400px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
-      padding: 30px 20px;
+      padding: 40px 20px;
       position: relative;
     }
 
-    /* Overlay pour le texte */
+    /* Overlay pour rendre le texte lisible */
     .hero::before {
       content: "";
       position: absolute;
@@ -93,7 +92,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.45);
       z-index: 1;
     }
 
@@ -106,11 +105,13 @@
       font-size: 2.5em;
       margin-bottom: 10px;
       font-weight: 700;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
     .hero p {
       font-size: 1.2em;
       margin-bottom: 20px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
     .hero .btn {
@@ -127,65 +128,82 @@
       background: darkorange;
     }
 
-    /* ----- SERVICES ----- */
-    .services-preview {
-      padding: 5px 10px;
-      background: #f9f9f9;
+    /* ----- SERVICES SUR LA PHOTO ----- */
+    .services-overlay {
+      margin-top: 40px;
+      padding: 0;
+      background: transparent;
       text-align: center;
+      max-width: 1000px;
+      width: 100%;
     }
 
-    .services-preview h3 {
-      font-size: 1.6em;
-      margin-bottom: 5px;
+    .services-overlay h3 {
+      font-size: 1.8em;
+      margin-bottom: 12px;
       font-weight: 700;
-      color: #1e1e1e;
+      color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
     .grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 18px;
       justify-content: center;
     }
 
     .card {
-      flex: 1 1 250px;
-      max-width: 280px;
+      flex: 1 1 220px;
+      max-width: 240px;
       text-align: center;
+      background: transparent;
+      padding: 0;
+    }
+
+    .service-icon {
+      font-size: 34px;
+      color: orange;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
     .card h4 {
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-weight: 600;
-      color: #1e1e1e;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      font-size: 1.05em;
     }
 
     .card p {
       font-weight: 400;
-      color: #555;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95em;
+      line-height: 1.3;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
-    .service-icon {
-      font-size: 30px;
-      color: orange;
-      margin-bottom: 10px;
-    }
-
-    /* ----- CTA ----- */
+    /* ----- CTA (compact) ----- */
     .cta {
       background: #1e1e1e;
       color: white;
-      padding: 8px 15px;
+      padding: 12px 15px; /* réduit la hauteur */
       text-align: center;
+    }
+
+    .cta h3 {
+      font-size: 1.2em;
+      margin-bottom: 6px;
     }
 
     .cta .btn {
       background: orange;
-      padding: 6px 15px;
-      color: white;
-      font-weight: bold;
-      border-radius: 5px;
+      padding: 6px 14px;
       margin-top: 5px;
+      font-size: 0.9em;
+      font-weight: bold;
+      border-radius: 4px;
       display: inline-block;
     }
 
@@ -212,6 +230,12 @@
       .grid {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
+      }
+
+      .services-overlay h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -235,36 +259,36 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO + SERVICES SUR LA PHOTO -->
   <section class="hero">
     <h2>Votre partenaire de confiance pour tous vos travaux</h2>
     <p>Rénovation - Construction - Amélioration de l'habitat</p>
     <a href="contact.html" class="btn">Demander un devis</a>
-  </section>
 
-  <!-- SERVICES -->
-  <section class="services-preview">
-    <h3>Nos services</h3>
-    <div class="grid">
-      <div class="card">
-        <i class="fa-solid fa-paint-roller service-icon"></i>
-        <h4>Rénovation intérieure</h4>
-        <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-bricks service-icon"></i>
-        <h4>Maçonnerie générale</h4>
-        <p>Fondations, murs, dalles, agrandissements.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-house-chimney service-icon"></i>
-        <h4>Toiture & couverture</h4>
-        <p>Pose, rénovation, étanchéité, charpente.</p>
+    <!-- Services sur la photo -->
+    <div class="services-overlay">
+      <h3>Nos services</h3>
+      <div class="grid">
+        <div class="card">
+          <i class="fa-solid fa-paint-roller service-icon"></i>
+          <h4>Rénovation intérieure</h4>
+          <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-bricks service-icon"></i>
+          <h4>Maçonnerie générale</h4>
+          <p>Fondations, murs, dalles, agrandissements.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-house-chimney service-icon"></i>
+          <h4>Toiture & couverture</h4>
+          <p>Pose, rénovation, étanchéité, charpente.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA (compact) -->
   <section class="cta">
     <div class="container">
       <h3>Un projet ? Contactez-nous dès maintenant</h3>
