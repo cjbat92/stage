@@ -66,13 +66,16 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      height: 700px; /* fixe la taille */
+      height: 60vh; /* au lieu de 100vh */
+      min-height: 400px; /* sécurité pour petits écrans */
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
-      position: relative;
+      padding: 40px 20px;
+      position: relative; 
     }
 
     .hero::before {
