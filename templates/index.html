@@ -8,21 +8,15 @@
   <!-- Police Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome pour les icônes -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     /* ----- RESET & GLOBAL ----- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
       height: 100%;
-      margin: 0;
-      padding: 0;
     }
 
     body {
@@ -35,20 +29,11 @@
       min-height: 100vh;
     }
 
-    main {
-      flex: 1; /* pousse le footer en bas */
-    }
+    main { flex: 1; } /* pousse le footer en bas */
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
+    .container { width: 90%; max-width: 1100px; margin: auto; }
 
     /* ----- HEADER ----- */
     header {
@@ -57,37 +42,36 @@
       padding: 10px 0;
     }
 
-    header h1 {
-      float: left;
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    header h1 { font-size: 1.4em; font-weight: 700; }
 
     nav ul {
-      float: right;
-      list-style: none;
       display: flex;
-      gap: 10px;
+      list-style: none;
+      gap: 15px;
     }
 
-    nav a {
+    nav a { color: white; font-weight: 600; }
+    nav a:hover { text-decoration: underline; }
+
+    /* Menu burger */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
       color: white;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    header::after {
-      content: "";
-      display: block;
-      clear: both;
     }
 
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      min-height: 80vh; /* sur PC ça remplit bien */
-      height: auto; /* sur mobile ça s’ajuste */
+      min-height: 80vh;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -98,22 +82,16 @@
       position: relative;
     }
 
-    /* Overlay pour rendre le texte lisible */
     .hero::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top:0; left:0;
+      width:100%; height:100%;
       background: rgba(0,0,0,0.45);
       z-index: 1;
     }
 
-    .hero > * {
-      position: relative;
-      z-index: 2;
-    }
+    .hero > * { position: relative; z-index: 2; }
 
     .hero h2 {
       font-size: 2.5em;
@@ -137,12 +115,9 @@
       display: inline-block;
       transition: background 0.3s ease;
     }
+    .hero .btn:hover { background: darkorange; }
 
-    .hero .btn:hover {
-      background: darkorange;
-    }
-
-    /* ----- SERVICES SUR LA PHOTO ----- */
+    /* ----- SERVICES ----- */
     .services-overlay {
       margin-top: 40px;
       text-align: center;
@@ -195,7 +170,7 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
-    /* ----- CTA (compact) ----- */
+    /* ----- CTA ----- */
     .cta {
       background: #1e1e1e;
       color: white;
@@ -203,10 +178,7 @@
       text-align: center;
     }
 
-    .cta h3 {
-      font-size: 1.2em;
-      margin-bottom: 6px;
-    }
+    .cta h3 { font-size: 1.2em; margin-bottom: 6px; }
 
     .cta .btn {
       background: orange;
@@ -217,10 +189,7 @@
       border-radius: 4px;
       display: inline-block;
     }
-
-    .cta .btn:hover {
-      background: darkorange;
-    }
+    .cta .btn:hover { background: darkorange; }
 
     /* ----- FOOTER ----- */
     footer {
@@ -232,42 +201,27 @@
     }
 
     /* ----- RESPONSIVE ----- */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav ul { 
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #1e1e1e;
+        padding: 10px 0;
+      }
+      nav ul.active { display: flex; }
+      nav ul li { padding: 8px 0; text-align: center; }
+    }
+
     @media (max-width: 600px) {
-      .hero {
-        min-height: auto; /* plus de hauteur fixe sur mobile */
-        padding: 60px 15px;
-      }
+      .hero { padding: 60px 15px; min-height: auto; }
+      .hero h2 { font-size: 1.4em; }
+      .hero p { font-size: 0.95em; }
+      .hero .btn { padding: 10px 18px; font-size: 0.9em; }
 
-      .hero h2 {
-        font-size: 1.4em;
-      }
-
-      .hero p {
-        font-size: 0.95em;
-      }
-
-      .hero .btn {
-        padding: 10px 18px;
-        font-size: 0.9em;
-      }
-
-      .grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .card {
-        max-width: 95%;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav ul li {
-        padding: 8px 0;
-      }
+      .grid { flex-direction: column; align-items: center; }
+      .card { max-width: 95%; }
     }
   </style>
 </head>
@@ -278,6 +232,7 @@
   <header>
     <div class="container">
       <h1>CJ BAT</h1>
+      <div class="menu-toggle"><i class="fa fa-bars"></i></div>
       <nav>
         <ul>
           <li><a href="{{ url_for('index') }}">Accueil</a></li>
@@ -292,13 +247,11 @@
 
   <!-- CONTENU PRINCIPAL -->
   <main>
-    <!-- HERO + SERVICES SUR LA PHOTO -->
     <section class="hero">
       <h2>Votre partenaire de confiance pour tous vos travaux</h2>
       <p>Rénovation - Construction - Amélioration de l'habitat</p>
       <a href="contact.html" class="btn">Demander un devis</a>
 
-      <!-- Services sur la photo -->
       <div class="services-overlay">
         <h3>Nos services</h3>
         <div class="grid">
@@ -308,7 +261,7 @@
             <p>Peinture, plâtrerie, carrelage, revêtements de sol.</p>
           </div>
           <div class="card">
-            <i class="fa-solid fa-bricks service-icon"></i>
+            <i class="fa-solid fa-cubes service-icon"></i>
             <h4>Maçonnerie générale</h4>
             <p>Fondations, murs, dalles, agrandissements.</p>
           </div>
@@ -321,7 +274,6 @@
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta">
       <div class="container">
         <h3>Un projet ? Contactez-nous dès maintenant</h3>
@@ -333,9 +285,18 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 CJ BAT - Tous droits réservés</p>
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
     </div>
   </footer>
+
+  <!-- Script Menu Burger -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
