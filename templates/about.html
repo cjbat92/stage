@@ -1,88 +1,247 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>À propos - CJ BAT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos - CJBAT</title>
 
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #6dd5fa, #2193b0, #a1c4fd);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main { flex: 1; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ----- HEADER ----- */
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  header h1 { font-size: 1.4em; font-weight: 700; }
+
+  .menu-toggle {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+    z-index: 1010;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #1e1e1e;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    list-style: none;
+  }
+
+  nav ul.active { display: flex; }
+  nav ul li { padding: 10px; text-align: center; }
+  nav a { color: white; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
+
+  @media (min-width: 769px) {
+    .menu-toggle { display: none; }
+    nav ul { display: flex; position: static; flex-direction: row; gap: 15px; width: auto; box-shadow: none; border-radius: 0; }
+  }
+
+  /* ----- CONTENU PRINCIPAL ----- */
+  .about-box {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .about-illustration {
+    width: 100%;
+    max-width: 220px;
+    height: 220px;
+    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+  }
+
+  .about-illustration i { font-size: 70px; color: white; }
+  .about-illustration:hover { transform: scale(1.05); }
+
+  h2 { font-size: 1.8em; color: #1e1e1e; text-align: center; }
+
+  .about-box p { font-size: 1.05em; line-height: 1.6; text-align: center; color: #333; }
+
+  .about-features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+
+  /* Animation d'apparition */
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .feature {
+    flex: 1 1 250px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .feature i { font-size: 30px; color: #ff5722; margin-bottom: 10px; }
+  .feature h3 { margin-bottom: 8px; font-size: 1.1em; font-weight: 600; color: #1e1e1e; }
+  .feature p { font-size: 0.95em; color: #333; }
+
+  footer {
+    background: #1e1e1e;
+    color: #ccc;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .about-features { flex-direction: column; gap: 15px; }
+  }
+
+  @media (max-width: 600px) {
+    .about-box { padding: 30px 15px; }
+    .about-illustration { height: 180px; max-width: 180px; }
+    .about-illustration i { font-size: 55px; }
+    h2 { font-size: 1.5em; }
+
+    /* Responsive pour les features */
+    .about-features { 
+      flex-direction: column; 
+      gap: 15px; 
+      align-items: center;
     }
 
-    header, footer {
-      background: #1e1e1e;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
+    .feature {
+      flex: none;       /* supprime le flex imposé par défaut */
+      width: 90%;       /* largeur maximale 90% de l'écran */
+      max-width: 300px; /* ne dépasse pas 300px */
+      padding: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      animation: fadeUp 0.5s ease forwards;
     }
 
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h1, h2 {
-      text-align: center;
-    }
-
-    .content {
-      margin-top: 30px;
-      line-height: 1.8;
-    }
-  </style>
+    .feature:nth-child(1) { animation-delay: 0s; }
+    .feature:nth-child(2) { animation-delay: 0.1s; }
+    .feature:nth-child(3) { animation-delay: 0.2s; }
+  }
+</style>
 </head>
+
 <body>
-
   <header>
-  <div class="container">
-    <h1>CJ BAT</h1>
-    <nav>
-      <ul>
-        <li><a href="{{ url_for('index') }}">Accueil</a></li>
-        <li><a href="{{ url_for('about') }}">À propos</a></li>
-        <li><a href="{{ url_for('services') }}">Services</a></li>
-        <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-  <div class="container">
-    <h2>À propos de CJ BAT</h2>
-    <div class="content">
-      <p>Depuis plus de 10 ans, CJ BAT accompagne les particuliers et professionnels dans leurs projets de construction, de rénovation et d’aménagement intérieur ou extérieur.</p>
-      <p>Notre équipe expérimentée met un point d'honneur à offrir un travail de qualité, dans le respect des délais et des normes en vigueur.</p>
-      <p>Situés à [ta ville], nous intervenons dans toute la région pour des projets de toute taille. CJ BAT, c’est une entreprise locale, sérieuse, et à l’écoute de vos besoins.</p>
+    <div class="container">
+      <h1>CJBAT</h1>
+      <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Accueil</a></li>
+          <li><a href="{{ url_for('about') }}">À propos</a></li>
+          <li><a href="{{ url_for('services') }}">Services</a></li>
+          <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <div class="about-box">
+      <div class="about-illustration">
+        <i class="fa-solid fa-building"></i>
+      </div>
+
+      <h2>Notre histoire</h2>
+      <p>Depuis plus de 17 ans, CJBAT accompagne les particuliers et professionnels dans leurs projets de construction, rénovation et aménagement intérieur ou extérieur.</p>
+      <p>Notre équipe expérimentée met un point d'honneur à offrir un travail de qualité, dans le respect des délais et des normes en vigueur.</p>
+      <p>Situés à Le Plessis-Robinson dans le département Hauts-de-Seine (92350), nous intervenons dans toute la région pour des projets de toute taille. CJBAT, c’est une entreprise locale, sérieuse, et à l’écoute de vos besoins.</p>
+
+      <div class="about-features">
+        <div class="feature">
+          <i class="fa-solid fa-award"></i>
+          <h3>+17 ans d'expérience</h3>
+          <p>Expertise solide et reconnue.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-people-group"></i>
+          <h3>Équipe qualifiée</h3>
+          <p>Professionnels passionnés et attentifs.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-handshake"></i>
+          <h3>Confiance & qualité</h3>
+          <p>Accompagnement personnalisé et durable.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <footer>
-    <p>&copy; 2025 CJ BAT - Tous droits réservés</p>
+    <div class="container">
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    </div>
   </footer>
 
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
