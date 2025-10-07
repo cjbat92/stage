@@ -1,142 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CJBAT - Nos Services</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CJBAT - Nos services</title>
 
-  <!-- Police + icônes -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      background: linear-gradient(135deg, #6dd5fa, #2193b0, #a1c4fd);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-    main { flex: 1; }
-    a { text-decoration: none; color: inherit; }
+  main { flex: 1; }
+  a { text-decoration: none; color: inherit; }
 
-    /* ----- HEADER ----- */
-    header {
-      background: #1e1e1e;
-      color: white;
-      padding: 10px 0;
-    }
+  /* ----- HEADER (identique à accueil et à propos) ----- */
+header {
+  background: #1e1e1e;
+  color: white;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
+header .container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    header h1 { font-size: 1.4em; font-weight: 700; }
+header h1 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
 
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 15px;
-    }
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
 
-    nav a { color: white; font-weight: 600; }
-    nav a:hover { text-decoration: underline; }
+nav a {
+  color: white;
+  font-weight: 600;
+}
 
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: white;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    /* ----- SECTION SERVICES ----- */
-    .services {
-      padding: 50px 20px;
-      text-align: center;
-    }
+/* Menu burger */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
 
-    .services h2 {
-      font-size: 2em;
-      color: #1e1e1e;
-      margin-bottom: 40px;
-    }
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #1e1e1e;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  nav ul.active {
+    display: flex;
+  }
+}
 
+
+  /* ----- SECTION SERVICES ----- */
+  .services {
+    padding: 100px 20px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .services h2 {
+    font-size: 2em;
+    color: #1e1e1e;
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  .service-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .service-card {
+    flex: 1 1 260px;
+    max-width: 320px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.25s; }
+  .service-card:nth-child(3) { animation-delay: 0.4s; }
+  .service-card:nth-child(4) { animation-delay: 0.55s; }
+  .service-card:nth-child(5) { animation-delay: 0.7s; }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
+
+  .service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .service-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0 5px;
+    color: #1e1e1e;
+  }
+
+  .service-card p {
+    font-size: 0.95em;
+    color: #555;
+    padding: 0 15px 20px;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ----- SECTION CONTACT (sans bande noire) ----- */
+  .contact-banner {
+    text-align: center;
+    padding: 40px 20px 60px;
+  }
+
+  .contact-banner h3 {
+    font-size: 1.6em;
+    color: #1e1e1e;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .contact-banner a {
+    background: #ffbc42;
+    color: #1e1e1e;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  .contact-banner a:hover {
+    background: #ff6ec7;
+  }
+
+  /* ----- FOOTER ----- */
+  footer {
+    background: #1e1e1e;
+    color: #ccc;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* ----- RESPONSIVE ----- */
+  @media (max-width: 600px) {
     .service-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .service-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      width: 280px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .service-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .service-card h3 {
-      font-size: 1.2em;
-      color: #1e1e1e;
-      margin: 15px 0 8px;
-    }
-
-    .service-card p {
-      padding: 0 15px 20px;
-      font-size: 0.95em;
-      color: #555;
-    }
-
-    /* ----- FOOTER ----- */
-    footer {
-      background: #1e1e1e;
-      color: #ccc;
-      text-align: center;
-      font-size: 14px;
-      padding: 10px 0;
-      margin-top: auto;
-    }
-
-    /* ----- RESPONSIVE ----- */
-    @media (max-width: 768px) {
-      .menu-toggle { display: block; }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #1e1e1e;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-      }
-      nav ul.active { display: flex; }
-      nav ul li { padding: 8px 0; }
-    }
-  </style>
+    .service-card { max-width: 90%; }
+  }
+</style>
 </head>
 
 <body>
+
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -154,13 +230,15 @@
     </div>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
+  <!-- SECTION SERVICES -->
   <main>
     <section class="services">
       <h2>Nos services</h2>
+
       <div class="service-grid">
+
         <div class="service-card">
-          <img src="{{ url_for('static', filename='renovation.jpeg') }}" alt="Rénovation intérieure">
+          <img src="{{ url_for('static', filename='renovation.jpg') }}" alt="Rénovation intérieure">
           <h3>Rénovation intérieure</h3>
           <p>Peinture, plâtrerie, isolation, carrelage, revêtements muraux et de sol. Donnez un nouveau souffle à votre intérieur.</p>
         </div>
@@ -178,9 +256,9 @@
         </div>
 
         <div class="service-card">
-          <img src="{{ url_for('static', filename='isolation.jpg') }}" alt="Isolation thermique et acoustique">
+          <img src="{{ url_for('static', filename='isolation.jpg') }}" alt="Isolation">
           <h3>Isolation thermique & acoustique</h3>
-          <p>Isolation des combles, murs et sols. Solutions efficaces pour réduire vos factures d'énergie.</p>
+          <p>Isolation des combles, murs, sols. Solutions efficaces pour réduire vos factures d'énergie.</p>
         </div>
 
         <div class="service-card">
@@ -188,7 +266,14 @@
           <h3>Aménagements extérieurs</h3>
           <p>Terrasses, clôtures, allées, murets, travaux de terrassement et d’embellissement extérieur.</p>
         </div>
+
       </div>
+    </section>
+
+    <!-- SECTION CONTACT (texte sur fond dégradé) -->
+    <section class="contact-banner">
+      <h3>Vous avez un projet en tête ?</h3>
+      <a href="{{ url_for('contact') }}">Contactez-nous</a>
     </section>
   </main>
 
@@ -199,7 +284,7 @@
     </div>
   </footer>
 
-  <!-- Menu burger -->
+  <!-- Script Menu Burger -->
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
@@ -207,5 +292,6 @@
       nav.classList.toggle('active');
     });
   </script>
+
 </body>
 </html>
