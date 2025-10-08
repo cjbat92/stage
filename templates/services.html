@@ -20,84 +20,82 @@
     background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
 
-  main { flex: 1; }
+  main { flex: 0; padding-bottom: 0; }
   a { text-decoration: none; color: inherit; }
 
-  /* ----- HEADER (identique à accueil et à propos) ----- */
-header {
-  background: #1e1e1e;
-  color: white;
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-header .container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  font-size: 1.4em;
-  font-weight: 700;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 15px;
-}
-
-nav a {
-  color: white;
-  font-weight: 600;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Menu burger */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  nav ul {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
+  /* ----- HEADER ----- */
+  header {
     background: #1e1e1e;
-    width: 200px;
+    color: white;
     padding: 10px 0;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
-  nav ul.active {
-    display: flex;
-  }
-}
 
+  header .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 1.4em;
+    font-weight: 700;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+  }
+
+  nav a {
+    color: white;
+    font-weight: 600;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* Menu burger */
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+    nav ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: #1e1e1e;
+      width: 200px;
+      padding: 10px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    nav ul.active {
+      display: flex;
+    }
+  }
 
   /* ----- SECTION SERVICES ----- */
   .services {
-    padding: 50px 20px 80px;
+    padding: 50px 20px 50px;
     max-width: 1100px;
     margin: 0 auto;
     text-align: center;
@@ -159,46 +157,48 @@ nav a:hover {
     padding: 0 15px 20px;
   }
 
-  /* Animation */
   @keyframes fadeUp {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* ----- SECTION CONTACT (sans bandeau) ----- */
-.contact-banner {
-  text-align: center;
-  padding: 60px 20px;
-  background: none; /* supprime le fond */
-}
+  /* ----- SECTION CONTACT ----- */
+  .contact-banner {
+    text-align: center;
+    padding: 30px 20px 10px;
+    background: none;
+    margin-bottom: 0;
+  }
 
-.contact-banner h3 {
-  font-size: 1.6em;
-  color: #1e1e1e;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
+  .contact-banner h3 {
+    font-size: 1.6em;
+    color: #1e1e1e;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
 
-.contact-banner a {
-  background: #ffbc42; /* joli bouton orange */
-  color: #1e1e1e;
-  padding: 10px 25px;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
+  .contact-banner a {
+    background: #ffbc42;
+    color: #1e1e1e;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s;
+    display: inline-block;
+    margin-bottom: 0; /* évite tout espace sous le bouton */
+  }
 
-.contact-banner a:hover {
-  background: #ff6ec7;
-}
+  .contact-banner a:hover {
+    background: #ff6ec7;
+  }
 
   /* ----- FOOTER ----- */
   footer {
     background: #1e1e1e;
     color: #ccc;
-    padding: 10px 0;
     text-align: center;
     font-size: 14px;
+    padding: 10px 0;
   }
 
   /* ----- RESPONSIVE ----- */
@@ -271,7 +271,7 @@ nav a:hover {
       </div>
     </section>
 
-    <!-- SECTION CONTACT (texte sur fond dégradé) -->
+    <!-- SECTION CONTACT -->
     <section class="contact-banner">
       <h3>Vous avez un projet en tête ?</h3>
       <a href="{{ url_for('contact') }}">Contactez-nous</a>
