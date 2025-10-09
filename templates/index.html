@@ -70,7 +70,7 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      min-height: 90vh;
+      height: calc(100vh - 60px); /* pleine hauteur, moins le header */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -101,7 +101,7 @@
 
     .hero p {
       font-size: 1.2em;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
@@ -172,20 +172,21 @@
     /* ----- TEXTE CONTACT SUR IMAGE ----- */
     .hero-contact {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 90px; /* descend le texte */
     }
 
     .hero-contact h3 {
       color: white;
-      font-size: 1.4em;
-      margin-bottom: 12px;
+      font-size: 1.6em;
+      margin-bottom: 14px;
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      letter-spacing: 0.5px;
     }
 
     .hero-contact .btn {
       background: orange;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 5px;
       font-weight: bold;
       transition: background 0.3s;
@@ -216,10 +217,12 @@
       }
       nav ul.active { display: flex; }
       nav ul li { padding: 8px 0; text-align: center; }
+
+      .hero { height: auto; min-height: 90vh; }
+      .hero-contact { margin-top: 60px; }
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 60px 15px; min-height: auto; }
       .hero h2 { font-size: 1.4em; }
       .hero p { font-size: 0.95em; }
       .hero .btn { padding: 10px 18px; font-size: 0.9em; }
