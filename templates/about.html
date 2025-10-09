@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CJBAT - À propos</title>
+<title>CJBAT - Nos services</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,7 +16,9 @@
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #6dd5fa, #2193b0, #a1c4fd);
+    background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
+    background-attachment: fixed;
+    background-blend-mode: overlay;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -29,7 +31,7 @@
   header {
     background: #1e1e1e;
     color: white;
-    padding: 10px 0; /* même que sur la page d'accueil */
+    padding: 10px 0;
   }
 
   header .container {
@@ -41,10 +43,7 @@
     align-items: center;
   }
 
-  header h1 {
-    font-size: 1.4em;
-    font-weight: 700;
-  }
+  header h1 { font-size: 1.4em; font-weight: 700; }
 
   nav ul {
     display: flex;
@@ -52,14 +51,8 @@
     gap: 15px;
   }
 
-  nav a {
-    color: white;
-    font-weight: 600;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
+  nav a { color: white; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
 
   .menu-toggle {
     display: none;
@@ -81,42 +74,74 @@
     nav ul li { padding: 8px 0; text-align: center; }
   }
 
-  /* ----- CONTENU PRINCIPAL ----- */
-  .about-box {
+  /* ----- SECTION SERVICES ----- */
+  .services {
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
+  }
+
+  .services h2 {
+    font-size: 2em;
+    color: #1e1e1e;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 40px 40px; /* espace horizontal et vertical */
     max-width: 1000px;
-    margin: auto;
+    width: 100%;
   }
 
-  .about-illustration {
-    width: 100%;
-    max-width: 220px;
-    height: 220px;
-    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s;
+  .service-grid .service-card:nth-child(4) { grid-column: 1; }
+  .service-grid .service-card:nth-child(5) { grid-column: 2; }
+
+  .service-card {
+    max-width: 260px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    margin: 0 auto;
   }
 
-  .about-illustration i { font-size: 70px; color: white; }
-  .about-illustration:hover { transform: scale(1.05); }
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.25s; }
+  .service-card:nth-child(3) { animation-delay: 0.4s; }
+  .service-card:nth-child(4) { animation-delay: 0.55s; }
+  .service-card:nth-child(5) { animation-delay: 0.7s; }
 
-  h2 { font-size: 1.8em; color: #1e1e1e; text-align: center; }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
 
-  .about-box p { font-size: 1.05em; line-height: 1.6; text-align: center; color: #333; }
-
-  .about-features {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+  .service-card img {
     width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .service-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0 5px;
+    color: #1e1e1e;
+  }
+
+  .service-card p {
+    font-size: 0.95em;
+    color: #555;
+    padding: 0 15px 15px;
   }
 
   @keyframes fadeUp {
@@ -124,60 +149,49 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  .feature {
-    flex: 1 1 250px;
+  /* CONTACT */
+  .contact-banner {
     text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    animation: fadeUp 0.6s ease forwards;
+    padding: 25px 20px;
   }
 
-  .feature:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  .contact-banner h3 {
+    font-size: 1.6em;
+    color: #1e1e1e;
+    margin-bottom: 15px;
+    font-weight: 700;
   }
 
-  .feature i { font-size: 30px; color: #ff5722; margin-bottom: 10px; }
-  .feature h3 { margin-bottom: 8px; font-size: 1.1em; font-weight: 600; color: #1e1e1e; }
-  .feature p { font-size: 0.95em; color: #333; }
+  .contact-banner a {
+    background: #ffbc42;
+    color: #1e1e1e;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
 
-  /* ----- FOOTER ----- */
+  .contact-banner a:hover { background: #ff6ec7; }
+
+  /* FOOTER */
   footer {
     background: #1e1e1e;
     color: #ccc;
-    padding: 10px 0; /* plus fin, comme sur la page d'accueil */
     text-align: center;
     font-size: 14px;
-    margin-top: auto;
+    padding: 10px 0;
+    flex-shrink: 0;
   }
 
-  @media (max-width: 768px) {
-    .about-features { flex-direction: column; gap: 15px; }
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .service-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
+    .service-grid .service-card:nth-child(4),
+    .service-grid .service-card:nth-child(5) { grid-column: auto; }
   }
 
   @media (max-width: 600px) {
-    .about-box { padding: 30px 15px; }
-    .about-illustration { height: 180px; max-width: 180px; }
-    .about-illustration i { font-size: 55px; }
-    h2 { font-size: 1.5em; }
-
-    .about-features { 
-      flex-direction: column; 
-      gap: 15px; 
-      align-items: center;
-    }
-
-    .feature {
-      flex: none;
-      width: 90%;
-      max-width: 300px;
-      padding: 15px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      animation: fadeUp 0.5s ease forwards;
-    }
+    .service-grid { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
 </head>
@@ -202,34 +216,45 @@
 
   <!-- CONTENU -->
   <main>
-    <div class="about-box">
-      <div class="about-illustration">
-        <i class="fa-solid fa-building"></i>
-      </div>
+    <section class="services">
+      <h2>Nos services</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='renovation.jpg') }}" alt="Rénovation intérieure">
+          <h3>Rénovation intérieure</h3>
+          <p>Peinture, plâtrerie, carrelage, revêtements muraux et de sol.</p>
+        </div>
 
-      <h2>Notre histoire</h2>
-      <p>Depuis plus de 17 ans, CJBAT accompagne les particuliers et professionnels dans leurs projets de construction, rénovation et aménagement intérieur ou extérieur.</p>
-      <p>Notre équipe expérimentée met un point d'honneur à offrir un travail de qualité, dans le respect des délais et des normes en vigueur.</p>
-      <p>Situés à Le Plessis-Robinson dans le département Hauts-de-Seine (92350), nous intervenons dans toute la région pour des projets de toute taille. CJBAT, c’est une entreprise locale, sérieuse, et à l’écoute de vos besoins.</p>
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='maconnerie.jpg') }}" alt="Maçonnerie générale">
+          <h3>Maçonnerie générale</h3>
+          <p>Fondations, murs, dalles béton, extensions de maison.</p>
+        </div>
 
-      <div class="about-features">
-        <div class="feature">
-          <i class="fa-solid fa-award"></i>
-          <h3>+17 ans d'expérience</h3>
-          <p>Expertise solide et reconnue.</p>
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='toiture.jpg') }}" alt="Travaux de toiture">
+          <h3>Travaux de toiture</h3>
+          <p>Couverture, zinguerie, réparation, étanchéité, entretien.</p>
         </div>
-        <div class="feature">
-          <i class="fa-solid fa-people-group"></i>
-          <h3>Équipe qualifiée</h3>
-          <p>Professionnels passionnés et attentifs.</p>
+
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='isolation.jpg') }}" alt="Isolation">
+          <h3>Isolation thermique & acoustique</h3>
+          <p>Isolation des combles, murs, sols. Réduction d’énergie.</p>
         </div>
-        <div class="feature">
-          <i class="fa-solid fa-handshake"></i>
-          <h3>Confiance & qualité</h3>
-          <p>Accompagnement personnalisé et durable.</p>
+
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='amenagements.jpeg') }}" alt="Aménagements extérieurs">
+          <h3>Aménagements extérieurs</h3>
+          <p>Terrasses, clôtures, allées, murets, terrassement.</p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="contact-banner">
+      <h3>Vous avez un projet ?</h3>
+      <a href="{{ url_for('contact') }}">Contactez-nous</a>
+    </section>
   </main>
 
   <!-- FOOTER -->
@@ -243,9 +268,7 @@
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
   </script>
 </body>
 </html>
