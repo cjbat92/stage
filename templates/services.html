@@ -14,13 +14,16 @@
 
   body {
     font-family: 'Poppins', sans-serif;
-    color: #333;
+    line-height: 1.8;
+    color: #333; 
     background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
 
+  main { flex: 1; }
   a { text-decoration: none; color: inherit; }
 
   /* ----- HEADER ----- */
@@ -28,13 +31,12 @@
     background: #1e1e1e;
     color: white;
     padding: 10px 0;
-    flex-shrink: 0;
   }
 
   header .container {
     width: 90%;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,29 +73,31 @@
     nav ul li { padding: 8px 0; text-align: center; }
   }
 
-  /* ----- SECTION SERVICES ----- */
-  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; }
+  /* ----- MAIN CONTENT ----- */
+  .services-box {
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: auto;
+  }
 
-  .services {
-    padding: 20px 15px;
+  h2 {
+    font-size: 1.7em;
+    color: #1e1e1e;
     text-align: center;
   }
 
-  .services h2 {
-    font-size: 1.8em;         
-    color: #fff;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    margin-bottom: 30px;      
-    font-weight: 700;
-  }
-
+  /* ----- GRID DES CARTES ----- */
   .service-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* centre les lignes */
-    gap: 30px 20px; /* espace vertical et horizontal */
-    max-width: 900px;
-    margin: 0 auto;
+    justify-content: center;
+    gap: 25px 20px; /* vertical | horizontal */
+    width: 100%;
+    margin-top: 40px;
   }
 
   .service-card {
@@ -102,8 +106,8 @@
     background: white;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    overflow: hidden;
     text-align: center;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
@@ -118,6 +122,15 @@
   .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
+
+  /* Centrer les 2 dernières cartes sur la ligne du bas */
+  @media (min-width: 768px) {
+    .service-card:nth-child(4),
+    .service-card:nth-child(5) {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .service-card img {
@@ -138,22 +151,15 @@
     padding: 0 10px 15px;
   }
 
-  /* Centrer les 2 dernières cartes */
-  .service-card:nth-child(4),
-  .service-card:nth-child(5) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(20px); }
+    0% { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* ----- CONTACT ----- */
+  /* ----- CONTACT BANNER ----- */
   .contact-banner {
     text-align: center;
-    padding: 20px 10px;
+    padding: 40px 10px 20px;
   }
 
   .contact-banner h3 {
@@ -178,15 +184,10 @@
   footer {
     background: #1e1e1e;
     color: #ccc;
+    padding: 10px 0;
     text-align: center;
     font-size: 14px;
-    padding: 10px 0;
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 768px) {
-    body { overflow-y: auto; }
-    .service-grid { max-width: 100%; }
+    margin-top: auto;
   }
 
 </style>
@@ -210,9 +211,9 @@
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
   <main>
-    <section class="services">
+    <div class="services-box">
       <h2>Nos services</h2>
 
       <div class="service-grid">
@@ -246,19 +247,23 @@
           <p>Terrasses, clôtures, allées, murets, terrassement.</p>
         </div>
       </div>
-    </section>
 
-    <section class="contact-banner">
-      <h3>Vous avez un projet ?</h3>
-      <a href="{{ url_for('contact') }}">Contactez-nous</a>
-    </section>
+      <!-- Contact -->
+      <section class="contact-banner">
+        <h3>Vous avez un projet ?</h3>
+        <a href="{{ url_for('contact') }}">Contactez-nous</a>
+      </section>
+    </div>
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    <div class="container">
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    </div>
   </footer>
 
+  <!-- Script Menu Burger -->
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
