@@ -18,23 +18,22 @@
     background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    min-height: 100vh;
   }
 
   a { text-decoration: none; color: inherit; }
 
-  /* HEADER */
+  /* ----- HEADER ----- */
   header {
     background: #1e1e1e;
     color: white;
     padding: 10px 0;
-    flex-shrink: 0;
   }
 
   header .container {
     width: 90%;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,107 +62,99 @@
     nav ul {
       display: none;
       flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 0;
+      width: 100%;
       background: #1e1e1e;
-      width: 200px;
       padding: 10px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     nav ul.active { display: flex; }
+    nav ul li { padding: 8px 0; text-align: center; }
   }
 
   /* ----- SECTION SERVICES ----- */
-  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 10px; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 15px; }
 
   .services {
-    padding: 20px 15px;
     text-align: center;
   }
 
   .services h2 {
-    font-size: 1.6em;         
+    font-size: 1.8em;
     color: #fff;
     text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    margin-bottom: 20px;      
+    margin-bottom: 40px;
     font-weight: 700;
   }
 
   .service-grid {
-    display: flex;
-    flex-wrap: wrap;          
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 30px;
     justify-content: center;
-    gap: 15px;
-    max-width: 700px;         /* limite la largeur pour forcer plusieurs lignes */
+    max-width: 900px;
     margin: 0 auto;
   }
 
+  .service-grid .service-card:nth-child(4) { grid-column: 1; }
+  .service-grid .service-card:nth-child(5) { grid-column: 2; }
+
   .service-card {
-    flex: 1 1 220px;
-    max-width: 220px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 15px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
   }
 
-  .service-card:nth-child(1) { animation-delay: 0.1s; }
-  .service-card:nth-child(2) { animation-delay: 0.25s; }
-  .service-card:nth-child(3) { animation-delay: 0.4s; }
-  .service-card:nth-child(4) { animation-delay: 0.55s; }
-  .service-card:nth-child(5) { animation-delay: 0.7s; }
+  .service-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+
+  .service-card h3 {
+    font-size: 1.05em;
+    margin: 12px 0 6px;
+    color: #1e1e1e;
+  }
+
+  .service-card p {
+    font-size: 0.95em;
+    color: #555;
+    padding: 0 12px 12px;
+  }
 
   .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   }
 
-  .service-card img {
-    width: 100%;
-    height: 120px;          
-    object-fit: cover;
-  }
-
-  .service-card h3 {
-    font-size: 1em;           
-    margin: 10px 0 4px;
-    color: #1e1e1e;
-  }
-
-  .service-card p {
-    font-size: 0.85em;        
-    color: #555;
-    padding: 0 10px 10px;     
-  }
-
   @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(20px); }
+    0% { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* CONTACT */
+  /* ----- CONTACT ----- */
   .contact-banner {
     text-align: center;
-    padding: 15px 10px;
+    margin-top: 30px;
   }
 
   .contact-banner h3 {
-    font-size: 1.4em;
+    font-size: 1.5em;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
   .contact-banner a {
     background: #ffbc42;
     color: #1e1e1e;
-    padding: 8px 20px;
+    padding: 10px 25px;
     border-radius: 30px;
     font-weight: 600;
     transition: background 0.3s;
@@ -171,25 +162,35 @@
 
   .contact-banner a:hover { background: #ff6ec7; }
 
-  /* FOOTER */
+  /* ----- FOOTER ----- */
   footer {
     background: #1e1e1e;
     color: #ccc;
     text-align: center;
     font-size: 14px;
     padding: 10px 0;
-    flex-shrink: 0;
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    body { overflow-y: auto; }
-    .service-grid { max-width: 100%; }
+  @media (max-width: 900px) {
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto auto;
+    }
+    .service-grid .service-card:nth-child(4) { grid-column: 1; }
+    .service-grid .service-card:nth-child(5) { grid-column: 2; }
+  }
+
+  @media (max-width: 600px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
   }
 </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <div class="container">
       <h1>CJBAT</h1>
@@ -206,6 +207,7 @@
     </div>
   </header>
 
+  <!-- MAIN CONTENT -->
   <main>
     <section class="services">
       <h2>Nos services</h2>
@@ -241,16 +243,19 @@
           <p>Terrasses, clôtures, allées, murets, terrassement.</p>
         </div>
       </div>
-    </section>
 
-    <section class="contact-banner">
-      <h3>Vous avez un projet ?</h3>
-      <a href="{{ url_for('contact') }}">Contactez-nous</a>
+      <div class="contact-banner">
+        <h3>Vous avez un projet ?</h3>
+        <a href="{{ url_for('contact') }}">Contactez-nous</a>
+      </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    <div class="container">
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    </div>
   </footer>
 
   <script>
