@@ -5,34 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CJBAT - Nos services</title>
 
-<!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+  html, body { height: 100%; overflow: hidden; }
 
   body {
     font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #ff6ec7, #ffbc42, #42d4ff);
+    background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
+    background-attachment: fixed;
+    background-blend-mode: overlay;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
-  main { flex: 0; padding-bottom: 0; }
   a { text-decoration: none; color: inherit; }
 
-  /* ----- HEADER ----- */
+  /* HEADER */
   header {
     background: #1e1e1e;
     color: white;
     padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    flex-shrink: 0;
   }
 
   header .container {
@@ -44,10 +42,7 @@
     align-items: center;
   }
 
-  header h1 {
-    font-size: 1.4em;
-    font-weight: 700;
-  }
+  header h1 { font-size: 1.4em; font-weight: 700; }
 
   nav ul {
     display: flex;
@@ -55,16 +50,9 @@
     gap: 15px;
   }
 
-  nav a {
-    color: white;
-    font-weight: 600;
-  }
+  nav a { color: white; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
 
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  /* Menu burger */
   .menu-toggle {
     display: none;
     font-size: 28px;
@@ -72,10 +60,9 @@
     color: white;
   }
 
+  /* BURGER MENU (mobile) */
   @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-    }
+    .menu-toggle { display: block; }
     nav ul {
       display: none;
       flex-direction: column;
@@ -88,42 +75,44 @@
       border-radius: 0 0 8px 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    nav ul.active {
-      display: flex;
-    }
+    nav ul.active { display: flex; }
   }
 
-  /* ----- SECTION SERVICES ----- */
+  /* SECTION SERVICES */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 10px 0;
+  }
+
   .services {
-    padding: 50px 20px 50px;
-    max-width: 1100px;
-    margin: 0 auto;
     text-align: center;
   }
 
   .services h2 {
-    font-size: 2em;
-    color: #1e1e1e;
-    margin-bottom: 40px;
-    font-weight: 700;
+    font-size: 1.8em;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
   }
 
   .service-grid {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
   .service-card {
-    flex: 1 1 260px;
-    max-width: 320px;
-    background: white;
+    flex: 1 1 200px;
+    max-width: 250px;
+    background: rgba(255,255,255,0.9);
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    overflow: hidden;
-    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
   }
@@ -136,77 +125,70 @@
 
   .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   }
 
   .service-card img {
     width: 100%;
-    height: 200px;
+    height: 120px;
     object-fit: cover;
   }
 
   .service-card h3 {
-    font-size: 1.2em;
-    margin: 15px 0 5px;
+    font-size: 1.05em;
+    margin: 10px 0 4px;
     color: #1e1e1e;
   }
 
   .service-card p {
-    font-size: 0.95em;
+    font-size: 0.85em;
     color: #555;
-    padding: 0 15px 20px;
+    padding: 0 10px 15px;
   }
 
   @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(30px); }
+    0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* ----- SECTION CONTACT ----- */
+  /* CONTACT */
   .contact-banner {
     text-align: center;
-    padding: 30px 20px 10px;
-    background: none;
-    margin-bottom: 0;
+    padding: 15px 10px;
   }
 
   .contact-banner h3 {
-    font-size: 1.6em;
-    color: #1e1e1e;
-    margin-bottom: 15px;
-    font-weight: 700;
+    font-size: 1.4em;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
   .contact-banner a {
     background: #ffbc42;
     color: #1e1e1e;
-    padding: 10px 25px;
+    padding: 8px 20px;
     border-radius: 30px;
     font-weight: 600;
     transition: background 0.3s;
-    display: inline-block;
-    margin-bottom: 0; /* évite tout espace sous le bouton */
   }
 
-  .contact-banner a:hover {
-    background: #ff6ec7;
-  }
+  .contact-banner a:hover { background: #ff6ec7; }
 
-  /* ----- FOOTER ----- */
+  /* FOOTER */
   footer {
     background: #1e1e1e;
     color: #ccc;
     text-align: center;
     font-size: 14px;
     padding: 10px 0;
+    flex-shrink: 0;
   }
 
-  /* ----- RESPONSIVE ----- */
-  @media (max-width: 600px) {
-    .service-grid {
-      flex-direction: column;
-      align-items: center;
-    }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    body { overflow-y: auto; }
+    .service-grid { flex-direction: column; align-items: center; }
     .service-card { max-width: 90%; }
   }
 </style>
@@ -214,7 +196,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="container">
       <h1>CJBAT</h1>
@@ -231,67 +212,57 @@
     </div>
   </header>
 
-  <!-- SECTION SERVICES -->
   <main>
     <section class="services">
       <h2>Nos services</h2>
 
       <div class="service-grid">
-
         <div class="service-card">
           <img src="{{ url_for('static', filename='renovation.jpg') }}" alt="Rénovation intérieure">
           <h3>Rénovation intérieure</h3>
-          <p>Peinture, plâtrerie, isolation, carrelage, revêtements muraux et de sol. Donnez un nouveau souffle à votre intérieur.</p>
+          <p>Peinture, plâtrerie, carrelage, revêtements muraux et de sol.</p>
         </div>
 
         <div class="service-card">
           <img src="{{ url_for('static', filename='maconnerie.jpg') }}" alt="Maçonnerie générale">
           <h3>Maçonnerie générale</h3>
-          <p>Création de fondations, élévation de murs, dalles béton, extensions de maison ou garage.</p>
+          <p>Fondations, murs, dalles béton, extensions de maison.</p>
         </div>
 
         <div class="service-card">
           <img src="{{ url_for('static', filename='toiture.jpg') }}" alt="Travaux de toiture">
           <h3>Travaux de toiture</h3>
-          <p>Couverture, zinguerie, réparation de tuiles ou ardoises, étanchéité et entretien de toits.</p>
+          <p>Couverture, zinguerie, réparation, étanchéité, entretien.</p>
         </div>
 
         <div class="service-card">
           <img src="{{ url_for('static', filename='isolation.jpg') }}" alt="Isolation">
           <h3>Isolation thermique & acoustique</h3>
-          <p>Isolation des combles, murs, sols. Solutions efficaces pour réduire vos factures d'énergie.</p>
+          <p>Isolation des combles, murs, sols. Réduction d’énergie.</p>
         </div>
 
         <div class="service-card">
           <img src="{{ url_for('static', filename='amenagements.jpeg') }}" alt="Aménagements extérieurs">
           <h3>Aménagements extérieurs</h3>
-          <p>Terrasses, clôtures, allées, murets, travaux de terrassement et d’embellissement extérieur.</p>
+          <p>Terrasses, clôtures, allées, murets, terrassement.</p>
         </div>
-
       </div>
     </section>
 
-    <!-- SECTION CONTACT -->
     <section class="contact-banner">
-      <h3>Vous avez un projet en tête ?</h3>
+      <h3>Vous avez un projet ?</h3>
       <a href="{{ url_for('contact') }}">Contactez-nous</a>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
-    </div>
+    <p>&copy; 2025 CJBAT - Tous droits réservés</p>
   </footer>
 
-  <!-- Script Menu Burger -->
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
   </script>
 
 </body>
