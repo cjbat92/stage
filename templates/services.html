@@ -28,12 +28,13 @@
     background: #1e1e1e;
     color: white;
     padding: 10px 0;
+    flex-shrink: 0;
   }
 
   header .container {
     width: 90%;
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,43 +72,52 @@
   }
 
   /* ----- SECTION SERVICES ----- */
-  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 15px; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; }
 
   .services {
+    padding: 20px 15px;
     text-align: center;
   }
 
   .services h2 {
-    font-size: 1.8em;
+    font-size: 1.8em;         
     color: #fff;
     text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    margin-bottom: 40px;
+    margin-bottom: 30px;      
     font-weight: 700;
   }
 
   .service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 30px;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centre les lignes */
+    gap: 30px 20px; /* espace vertical et horizontal */
     max-width: 900px;
     margin: 0 auto;
   }
 
-  .service-grid .service-card:nth-child(4) { grid-column: 1; }
-  .service-grid .service-card:nth-child(5) { grid-column: 2; }
-
   .service-card {
+    flex: 1 1 250px;
+    max-width: 280px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding-bottom: 15px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
+  }
+
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.25s; }
+  .service-card:nth-child(3) { animation-delay: 0.4s; }
+  .service-card:nth-child(4) { animation-delay: 0.55s; }
+  .service-card:nth-child(5) { animation-delay: 0.7s; }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   }
 
   .service-card img {
@@ -117,37 +127,39 @@
   }
 
   .service-card h3 {
-    font-size: 1.05em;
-    margin: 12px 0 6px;
+    font-size: 1.1em;
+    margin: 10px 0 5px;
     color: #1e1e1e;
   }
 
   .service-card p {
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: #555;
-    padding: 0 12px 12px;
+    padding: 0 10px 15px;
   }
 
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  /* Centrer les 2 dernières cartes */
+  .service-card:nth-child(4),
+  .service-card:nth-child(5) {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(15px); }
+    0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
   /* ----- CONTACT ----- */
   .contact-banner {
     text-align: center;
-    margin-top: 30px;
+    padding: 20px 10px;
   }
 
   .contact-banner h3 {
     font-size: 1.5em;
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     text-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
@@ -169,23 +181,14 @@
     text-align: center;
     font-size: 14px;
     padding: 10px 0;
+    flex-shrink: 0;
   }
 
-  @media (max-width: 900px) {
-    .service-grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: auto auto auto;
-    }
-    .service-grid .service-card:nth-child(4) { grid-column: 1; }
-    .service-grid .service-card:nth-child(5) { grid-column: 2; }
+  @media (max-width: 768px) {
+    body { overflow-y: auto; }
+    .service-grid { max-width: 100%; }
   }
 
-  @media (max-width: 600px) {
-    .service-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-    }
-  }
 </style>
 </head>
 
@@ -207,7 +210,7 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main>
     <section class="services">
       <h2>Nos services</h2>
@@ -243,19 +246,17 @@
           <p>Terrasses, clôtures, allées, murets, terrassement.</p>
         </div>
       </div>
+    </section>
 
-      <div class="contact-banner">
-        <h3>Vous avez un projet ?</h3>
-        <a href="{{ url_for('contact') }}">Contactez-nous</a>
-      </div>
+    <section class="contact-banner">
+      <h3>Vous avez un projet ?</h3>
+      <a href="{{ url_for('contact') }}">Contactez-nous</a>
     </section>
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
-    </div>
+    <p>&copy; 2025 CJBAT - Tous droits réservés</p>
   </footer>
 
   <script>
