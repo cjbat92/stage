@@ -29,7 +29,7 @@
       min-height: 100vh;
     }
 
-    main { flex: 1; } /* pousse le footer en bas */
+    main { flex: 1; }
 
     a { text-decoration: none; color: inherit; }
 
@@ -70,8 +70,7 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      min-height: 80vh;
-      height: auto;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -117,7 +116,7 @@
     }
     .hero .btn:hover { background: darkorange; }
 
-    /* ----- SERVICES ----- */
+    /* ----- SERVICES DANS HERO ----- */
     .services-overlay {
       margin-top: 40px;
       text-align: center;
@@ -170,31 +169,36 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
-    /* ----- CTA ----- */
-    .cta {
-      background: #1e1e1e;
-      color: white;
-      padding: 20px 15px;
+    /* ----- TEXTE CONTACT SUR IMAGE ----- */
+    .hero-contact {
       text-align: center;
+      margin-top: 50px;
     }
 
-    .cta h3 { font-size: 1.2em; margin-bottom: 6px; }
+    .hero-contact h3 {
+      color: white;
+      font-size: 1.4em;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
 
-    .cta .btn {
+    .hero-contact .btn {
       background: orange;
-      padding: 8px 16px;
-      margin-top: 5px;
-      font-size: 0.9em;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
       font-weight: bold;
-      border-radius: 4px;
-      display: inline-block;
+      transition: background 0.3s;
     }
-    .cta .btn:hover { background: darkorange; }
+
+    .hero-contact .btn:hover {
+      background: darkorange;
+    }
 
     /* ----- FOOTER ----- */
     footer {
-      background: #333;
-      color: #aaa;
+      background: #1e1e1e;
+      color: #ccc;
       padding: 10px 0;
       text-align: center;
       font-size: 13px;
@@ -250,7 +254,7 @@
     <section class="hero">
       <h2>Votre partenaire de confiance pour tous vos travaux</h2>
       <p>Rénovation - Construction - Amélioration de l'habitat</p>
-      <a href="contact.html" class="btn">Demander un devis</a>
+      <a href="{{ url_for('contact') }}" class="btn">Demander un devis</a>
 
       <div class="services-overlay">
         <h3>Nos services</h3>
@@ -272,13 +276,13 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="cta">
-      <div class="container">
+      <!-- Texte Contact sur l'image -->
+      <div class="hero-contact">
         <h3>Un projet ? Contactez-nous dès maintenant</h3>
-        <a href="contact.html" class="btn">Nous contacter</a>
+        <a href="{{ url_for('contact') }}" class="btn">Nous contacter</a>
       </div>
+
     </section>
   </main>
 
