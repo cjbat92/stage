@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,19 +17,19 @@
 
     html, body {
       height: 100%;
-      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* pas de scroll horizontal */
     }
 
     body {
       font-family: 'Poppins', sans-serif;
       line-height: 1.8;
       color: #333;
-      background: #f9f9f9;
+      background: transparent;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-
+      min-height: 100vh;
     }
 
     main { flex: 1; }
@@ -44,7 +43,7 @@
       background: #1e1e1e;
       color: white;
       padding: 10px 0;
-      flex: 0 0 10vh; /* prend 10% de la hauteur */
+      flex-shrink: 0;
     }
 
     header .container {
@@ -74,9 +73,8 @@
 
     /* ----- HERO ----- */
     .hero {
-      background: url('static/imageaccueil.png') center/cover no-repeat;
-      flex: 1;
-      height: auto;
+      background: url('static/imageaccueil.png') center center / cover no-repeat;
+      min-height: calc(100vh - 100px); /* plein écran - header/footer */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -91,8 +89,8 @@
     .hero::before {
       content: "";
       position: absolute;
-      top:0; left:0;
-      width:100%; height:100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.45);
       z-index: 1;
     }
@@ -210,7 +208,7 @@
       padding: 10px 0;
       text-align: center;
       font-size: 13px;
-      flex: 0 0 8vh;
+      flex-shrink: 0;
     }
 
     /* ----- RESPONSIVE ----- */
@@ -226,7 +224,7 @@
       nav ul.active { display: flex; }
       nav ul li { padding: 8px 0; text-align: center; }
 
-      .hero { height: auto; min-height: 90vh; }
+      .hero { min-height: 90vh; }
       .hero-contact { margin-top: 60px; }
     }
 
