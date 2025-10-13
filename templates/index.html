@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,6 +18,7 @@
 
     html, body {
       height: 100%;
+      overflow: hidden;
     }
 
     body {
@@ -26,7 +28,9 @@
       background: #f9f9f9;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+
     }
 
     main { flex: 1; }
@@ -40,6 +44,7 @@
       background: #1e1e1e;
       color: white;
       padding: 10px 0;
+      flex: 0 0 10vh; /* prend 10% de la hauteur */
     }
 
     header .container {
@@ -70,7 +75,8 @@
     /* ----- HERO ----- */
     .hero {
       background: url('static/imageaccueil.png') center/cover no-repeat;
-      height: calc(100vh - 60px); /* pleine hauteur, moins le header */
+      flex: 1;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -79,6 +85,7 @@
       color: white;
       padding: 30px 20px;
       position: relative;
+      overflow: hidden;
     }
 
     .hero::before {
@@ -203,6 +210,7 @@
       padding: 10px 0;
       text-align: center;
       font-size: 13px;
+      flex: 0 0 8vh;
     }
 
     /* ----- RESPONSIVE ----- */
@@ -242,11 +250,11 @@
       <div class="menu-toggle"><i class="fa fa-bars"></i></div>
       <nav>
         <ul>
-          <li><a href="{{ url_for('index') }}">Accueil</a></li>
-          <li><a href="{{ url_for('about') }}">À propos</a></li>
-          <li><a href="{{ url_for('services') }}">Services</a></li>
-          <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
-          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/about/">À propos</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/projects/">Réalisations</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -257,7 +265,7 @@
     <section class="hero">
       <h2>Votre partenaire de confiance pour tous vos travaux</h2>
       <p>Rénovation - Construction - Amélioration de l'habitat</p>
-      <a href="{{ url_for('contact') }}" class="btn">Demander un devis</a>
+      <a href="/contact/" class="btn">Demander un devis</a>
 
       <div class="services-overlay">
         <h3>Nos services</h3>
@@ -283,7 +291,7 @@
       <!-- Texte Contact sur l'image -->
       <div class="hero-contact">
         <h3>Un projet ? Contactez-nous dès maintenant</h3>
-        <a href="{{ url_for('contact') }}" class="btn">Nous contacter</a>
+        <a href="/contact/" class="btn">Nous contacter</a>
       </div>
 
     </section>
