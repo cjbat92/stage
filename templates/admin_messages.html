@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Messages</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1e1e1e;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  th {
+    background: #1e1e1e;
+    color: white;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  tr:hover {
+    background: #e0f7ff;
+  }
+
+  /* Bouton Supprimer */
+  .delete-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  .delete-btn:hover {
+    background: #d32f2f;
+  }
+
+  /* Responsive pour mobile */
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    tr {
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    th {
+      display: none;
+    }
+
+    td {
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+    }
+
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 15px;
+      top: 12px;
+      font-weight: 600;
+      color: #555;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Messages reçus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Message</th>
+      <th>Envoyé le</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for msg in messages %}
+    <tr id="row-{{ msg[0] }}">
+      <td data-label="ID">{{ msg[0] }}</td>
+      <td data-label="Nom">{{ msg[1] }}</td>
+      <td data-label="Email">{{ msg[2] }}</td>
+      <td data-label="Message">{{ msg[3] }}</td>
+      <td data-label="Envoyé le">{{ msg[4] }}</td>
+      <td data-label="Action">
+        <button class="delete-btn" data-id="{{ msg[0] }}">Supprimer</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  const deleteButtons = document.querySelectorAll('.delete-btn');
+
+  deleteButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        fetch(`/admin/messages/delete/${id}/`, {
+          method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const row = document.getElementById(`row-${id}`);
+            row.remove();
+          } else {
+            alert('Erreur lors de la suppression.');
+          }
+        })
+        .catch(() => alert('Erreur lors de la suppression.'));
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
