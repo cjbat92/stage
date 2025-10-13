@@ -53,15 +53,15 @@ def index():
 
 @app.route("/about/")
 def about():
-    return render_template("about.html")
+    return render_template('about.html')
 
 @app.route("/services/")
 def services():
-    return render_template("services.html")
+    return render_template('services.html')
 
 @app.route("/projects/")
 def projects():
-    return render_template("projects.html')
+    return render_template('projects.html')
 
 @app.route('/contact/')
 def contact():
