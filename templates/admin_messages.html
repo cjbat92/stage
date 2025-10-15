@@ -3,33 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin - Messages</title>
+<title>CJBAT - Admin Messages</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
   body {
     font-family: 'Poppins', sans-serif;
-    background: #f4f4f4;
-    color: #333;
-    padding: 20px;
+    line-height: 1.8;
+    color: #333; 
+    background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
-  h1 {
+  main { flex: 1; }
+  a { text-decoration: none; color: inherit; }
+
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 10px 0;
+  }
+
+  header .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 { font-size: 1.4em; font-weight: 700; }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+  }
+
+  nav a { color: white; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav ul {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #1e1e1e;
+      padding: 10px 0;
+    }
+    nav ul.active { display: flex; }
+    nav ul li { padding: 8px 0; text-align: center; }
+  }
+
+  .admin-box {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 25px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  h2 {
     text-align: center;
-    margin-bottom: 30px;
+    font-size: 1.7em;
+    margin-bottom: 25px;
     color: #1e1e1e;
   }
+
+  .logout-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    background: #e74c3c;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .logout-btn:hover { background: #c0392b; }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: rgba(255,255,255,0.9);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
   th, td {
@@ -40,120 +119,109 @@
   th {
     background: #1e1e1e;
     color: white;
-    font-weight: 600;
   }
 
-  tr:nth-child(even) {
-    background: #f9f9f9;
-  }
+  tr:nth-child(even) { background: rgba(0,0,0,0.05); }
 
-  tr:hover {
-    background: #e0f7ff;
-  }
-
-  /* Bouton Supprimer */
   .delete-btn {
-    background: #f44336;
+    background: #e74c3c;
     color: white;
+    padding: 5px 10px;
     border: none;
-    padding: 6px 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: 600;
     transition: background 0.3s;
   }
 
-  .delete-btn:hover {
-    background: #d32f2f;
+  .delete-btn:hover { background: #c0392b; }
+
+  .table-container {
+    overflow-x: auto;
   }
 
-  /* Responsive pour mobile */
-  @media (max-width: 768px) {
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
+  footer {
+    background: #1e1e1e;
+    color: #ccc;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+  }
 
-    tr {
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ddd;
-    }
-
-    th {
-      display: none;
-    }
-
-    td {
-      position: relative;
-      padding-left: 50%;
-      text-align: left;
-    }
-
-    td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 15px;
-      top: 12px;
-      font-weight: 600;
-      color: #555;
-    }
+  @media (max-width: 600px) {
+    .admin-box { padding: 20px 15px; margin: 30px auto; }
+    h2 { font-size: 1.5em; }
   }
 </style>
 </head>
+
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h1>CJBAT</h1>
+      <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Accueil</a></li>
+          <li><a href="{{ url_for('about') }}">À propos</a></li>
+          <li><a href="{{ url_for('services') }}">Services</a></li>
+          <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<h1>Messages reçus</h1>
+  <main>
+    <div class="admin-box">
+      <h2>Messages reçus</h2>
+      <a class="logout-btn" href="{{ url_for('admin_logout') }}">Déconnexion</a>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nom</th>
-      <th>Email</th>
-      <th>Message</th>
-      <th>Envoyé le</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for msg in messages %}
-    <tr id="row-{{ msg[0] }}">
-      <td data-label="ID">{{ msg[0] }}</td>
-      <td data-label="Nom">{{ msg[1] }}</td>
-      <td data-label="Email">{{ msg[2] }}</td>
-      <td data-label="Message">{{ msg[3] }}</td>
-      <td data-label="Envoyé le">{{ msg[4] }}</td>
-      <td data-label="Action">
-        <button class="delete-btn" data-id="{{ msg[0] }}">Supprimer</button>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for msg in messages %}
+            <tr>
+              <td>{{ msg[0] }}</td>
+              <td>{{ msg[1] }}</td>
+              <td>{{ msg[2] }}</td>
+              <td>{{ msg[3] }}</td>
+              <td>{{ msg[4] }}</td>
+              <td>
+                <form method="POST" action="{{ url_for('delete_message', message_id=msg[0]) }}">
+                  <button type="submit" class="delete-btn">Supprimer</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 
-<script>
-  const deleteButtons = document.querySelectorAll('.delete-btn');
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    </div>
+  </footer>
 
-  deleteButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-id');
-      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
-        fetch(`/admin/messages/delete/${id}/`, {
-          method: 'POST'
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            const row = document.getElementById(`row-${id}`);
-            row.remove();
-          } else {
-            alert('Erreur lors de la suppression.');
-          }
-        })
-        .catch(() => alert('Erreur lors de la suppression.'));
-      }
-    });
-  });
-</script>
-
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+  </script>
 </body>
 </html>
