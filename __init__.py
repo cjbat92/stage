@@ -131,6 +131,14 @@ def delete_message(message_id):
     return jsonify({"success": True})
 
 # -----------------------------
+# Déconnexion admin
+# -----------------------------
+@app.route('/admin/logout/')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('admin_login'))
+
+# -----------------------------
 # Lancement de l'application
 # -----------------------------
 if __name__ == "__main__":
