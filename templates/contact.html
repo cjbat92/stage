@@ -141,6 +141,12 @@
     border: 0;
   }
 
+  #responseMessage {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
   footer {
     background: #1e1e1e;
     color: #ccc;
@@ -180,17 +186,20 @@
     <div class="contact-box">
       <h2>Contactez-nous</h2>
 
-      <form action="{{ url_for('send_message') }}" method="POST">
+      <!-- ✅ NOUVEAU FORMULAIRE -->
+      <form id="contactForm">
         <input type="text" name="name" placeholder="Votre nom" required>
         <input type="email" name="email" placeholder="Votre email" required>
         <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
         <button type="submit">Envoyer</button>
       </form>
 
+      <p id="responseMessage"></p>
+
       <!-- Carte Google Maps -->
       <div class="map-container">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2628.7613011847834!2d2.261051393738594!3d48.78644713183085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67a060c1350fd%3A0xc6915bc20282d27a!2sRue%20de%20la%20Garenne%2C%2092350%20Le%20Plessis-Robinson!5e0!3m2!1sfr!2sfr!4v1760359618924!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-     </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2628.7613011847834!2d2.261051393738594!3d48.78644713183085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67a060c1350fd%3A0xc6915bc20282d27a!2sRue%20de%20la%20Garenne%2C%2092350%20Le%20Plessis-Robinson!5e0!3m2!1sfr!2sfr!4v1760359618924!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </main>
 
@@ -205,6 +214,41 @@
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     toggle.addEventListener('click', () => nav.classList.toggle('active'));
+
+    // ✅ JS pour envoyer le message sans recharger la page
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value
+      };
+
+      const responseMessage = document.getElementById('responseMessage');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          responseMessage.style.color = 'green';
+          responseMessage.textContent = data.message;
+          this.reset();
+        } else {
+          responseMessage.style.color = 'red';
+          responseMessage.textContent = data.error || 'Erreur lors de l’envoi.';
+        }
+      } catch (err) {
+        responseMessage.style.color = 'red';
+        responseMessage.textContent = 'Une erreur est survenue.';
+      }
+    });
   </script>
 </body>
 </html>
