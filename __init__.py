@@ -8,7 +8,7 @@ app.secret_key = "un_secret_super_securise"  # pour la session admin
 # -----------------------------
 # Mot de passe admin
 # -----------------------------
-ADMIN_PASSWORD = "MonSuperMDP123"  # change par ton mot de passe
+ADMIN_PASSWORD = "AdminCJBAT92"  
 
 # -----------------------------
 # Base SQLite
