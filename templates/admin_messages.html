@@ -114,6 +114,7 @@
   th, td {
     padding: 12px 15px;
     text-align: left;
+    word-break: break-word;
   }
 
   th {
@@ -126,7 +127,7 @@
   .delete-btn {
     background: #e74c3c;
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -151,6 +152,7 @@
   @media (max-width: 600px) {
     .admin-box { padding: 20px 15px; margin: 30px auto; }
     h2 { font-size: 1.5em; }
+    th, td { font-size: 0.85em; padding: 8px; }
   }
 </style>
 </head>
@@ -192,17 +194,13 @@
           </thead>
           <tbody>
             {% for msg in messages %}
-            <tr>
+            <tr id="message-{{ msg[0] }}">
               <td>{{ msg[0] }}</td>
               <td>{{ msg[1] }}</td>
               <td>{{ msg[2] }}</td>
               <td>{{ msg[3] }}</td>
               <td>{{ msg[4] }}</td>
-              <td>
-                <form method="POST" action="{{ url_for('delete_message', message_id=msg[0]) }}">
-                  <button type="submit" class="delete-btn">Supprimer</button>
-                </form>
-              </td>
+              <td><button class="delete-btn" data-id="{{ msg[0] }}">Supprimer</button></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -222,6 +220,29 @@
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     toggle.addEventListener('click', () => nav.classList.toggle('active'));
+
+    // Suppression dynamique d’un message
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const messageId = this.dataset.id;
+          if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+            fetch(`/admin/messages/delete/${messageId}/`, {
+              method: 'POST'
+            })
+            .then(r => r.json())
+            .then(data => {
+              if (data.success) {
+                document.querySelector(`#message-${messageId}`).remove();
+              } else {
+                alert('Erreur lors de la suppression.');
+              }
+            })
+            .catch(() => alert('Erreur réseau.'));
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
