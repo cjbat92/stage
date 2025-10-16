@@ -1,89 +1,239 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Réalisations - CJ BAT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CJBAT - Réalisations</title>
 
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    header, footer {
-      background: #1e1e1e;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
 
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    color: #333; 
+    background: linear-gradient(135deg, #ff6ec7 0%, #ffb347 40%, #42d4ff 100%);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main { flex: 1; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ----- HEADER ----- */
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 10px 0;
+  }
+
+  header .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 { font-size: 1.4em; font-weight: 700; }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+  }
+
+  nav a { color: white; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
     nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .gallery img {
+      display: none;
+      flex-direction: column;
       width: 100%;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #1e1e1e;
+      padding: 10px 0;
     }
-  </style>
+    nav ul.active { display: flex; }
+    nav ul li { padding: 8px 0; text-align: center; }
+  }
+
+  /* ----- CONTENU PRINCIPAL ----- */
+  .projects-box {
+    padding: 40px 25px;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.7em;
+    color: #1e1e1e;
+    margin-bottom: 40px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .project-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .project-content h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .project-content p {
+    font-size: 0.95em;
+    color: #f0f0f0;
+  }
+
+  /* ----- FOOTER ----- */
+  footer {
+    background: #1e1e1e;
+    color: #ccc;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+  }
+
+  @media (max-width: 600px) {
+    .projects-box { padding: 30px 15px; }
+    h2 { font-size: 1.5em; margin-bottom: 25px; }
+  }
+</style>
 </head>
+
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h1>CJBAT</h1>
+      <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Accueil</a></li>
+          <li><a href="{{ url_for('about') }}">À propos</a></li>
+          <li><a href="{{ url_for('services') }}">Services</a></li>
+          <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
- <header>
-  <div class="container">
-    <h1>CJ BAT</h1>
-    <nav>
-      <ul>
-        <li><a href="{{ url_for('index') }}">Accueil</a></li>
-        <li><a href="{{ url_for('about') }}">À propos</a></li>
-        <li><a href="{{ url_for('services') }}">Services</a></li>
-        <li><a href="{{ url_for('projects') }}">Réalisations</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <!-- CONTENU PRINCIPAL -->
+  <main>
+    <div class="projects-box">
+      <h2>Nos Réalisations</h2>
 
-  <div class="container">
-    <h2>Nos réalisations</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='renovation.jpg') }}" alt="Rénovation intérieure" class="project-image">
+          <div class="project-content">
+            <h3>Rénovation d'appartement</h3>
+            <p>Refonte complète d'un appartement parisien avec cuisine moderne et salle de bain design.</p>
+          </div>
+        </div>
 
-    <div class="gallery">
-      <img src="https://via.placeholder.com/400x250?text=Chantier+1" alt="Projet 1">
-      <img src="https://via.placeholder.com/400x250?text=Chantier+2" alt="Projet 2">
-      <img src="https://via.placeholder.com/400x250?text=Chantier+3" alt="Projet 3">
-      <img src="https://via.placeholder.com/400x250?text=Chantier+4
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='extension.jpg') }}" alt="Extension maison" class="project-image">
+          <div class="project-content">
+            <h3>Extension de maison</h3>
+            <p>Ajout d'une extension lumineuse et fonctionnelle pour un confort optimal de la famille.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='exterieur.jpg') }}" alt="Aménagement extérieur" class="project-image">
+          <div class="project-content">
+            <h3>Aménagement extérieur</h3>
+            <p>Création d'un jardin moderne avec terrasse et espace détente pour profiter du plein air.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='bureau.jpg') }}" alt="Bureau rénové" class="project-image">
+          <div class="project-content">
+            <h3>Rénovation bureau professionnel</h3>
+            <p>Modernisation d'un espace de travail avec optimisation de la luminosité et des espaces.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='terrasse.jpg') }}" alt="Terrasse bois" class="project-image">
+          <div class="project-content">
+            <h3>Construction de terrasse bois</h3>
+            <p>Installation d'une terrasse en bois élégante pour profiter de l'extérieur toute l'année.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="{{ url_for('static', filename='sallebain.jpg') }}" alt="Salle de bain rénovée" class="project-image">
+          <div class="project-content">
+            <h3>Rénovation salle de bain</h3>
+            <p>Transformation complète d'une salle de bain avec design moderne et équipements haut de gamme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CJBAT - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <!-- Script Menu Burger -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
