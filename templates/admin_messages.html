@@ -72,10 +72,11 @@
     nav ul li { padding: 8px 0; text-align: center; }
   }
 
+  /* ----- SECTION ADMIN ----- */
   .admin-box {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 50px auto;
-    padding: 25px;
+    padding: 30px;
     background: rgba(255,255,255,0.1);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -83,7 +84,7 @@
 
   h2 {
     text-align: center;
-    font-size: 1.7em;
+    font-size: 1.8em;
     margin-bottom: 25px;
     color: #1e1e1e;
   }
@@ -93,26 +94,31 @@
     margin-bottom: 15px;
     background: #e74c3c;
     color: #fff;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 8px;
     font-weight: 600;
-    cursor: pointer;
     text-decoration: none;
     transition: background 0.3s;
   }
 
   .logout-btn:hover { background: #c0392b; }
 
+  /* ----- TABLEAU ----- */
+  .table-container {
+    overflow-x: auto;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255,255,255,0.9);
-    border-radius: 10px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
     overflow: hidden;
+    min-width: 600px;
   }
 
   th, td {
-    padding: 12px 15px;
+    padding: 15px 20px;
     text-align: left;
     word-break: break-word;
   }
@@ -120,26 +126,30 @@
   th {
     background: #1e1e1e;
     color: white;
+    font-weight: 600;
+    font-size: 15px;
   }
 
-  tr:nth-child(even) { background: rgba(0,0,0,0.05); }
+  td {
+    font-size: 0.95em;
+  }
+
+  tr:nth-child(even) { background: rgba(0,0,0,0.04); }
 
   .delete-btn {
     background: #e74c3c;
     color: white;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
   }
 
-  .delete-btn:hover { background: #c0392b; }
+  .delete-btn:hover { background: #c0392b; transform: scale(1.05); }
 
-  .table-container {
-    overflow-x: auto;
-  }
-
+  /* ----- FOOTER ----- */
   footer {
     background: #1e1e1e;
     color: #ccc;
@@ -149,10 +159,12 @@
     margin-top: auto;
   }
 
+  /* ----- MOBILE RESPONSIVE ----- */
   @media (max-width: 600px) {
     .admin-box { padding: 20px 15px; margin: 30px auto; }
     h2 { font-size: 1.5em; }
-    th, td { font-size: 0.85em; padding: 8px; }
+    th, td { padding: 10px 12px; font-size: 0.9em; }
+    .delete-btn { padding: 6px 10px; font-size: 0.85em; }
   }
 </style>
 </head>
@@ -194,13 +206,17 @@
           </thead>
           <tbody>
             {% for msg in messages %}
-            <tr id="message-{{ msg[0] }}">
+            <tr>
               <td>{{ msg[0] }}</td>
               <td>{{ msg[1] }}</td>
               <td>{{ msg[2] }}</td>
               <td>{{ msg[3] }}</td>
               <td>{{ msg[4] }}</td>
-              <td><button class="delete-btn" data-id="{{ msg[0] }}">Supprimer</button></td>
+              <td>
+                <form method="POST" action="{{ url_for('delete_message', message_id=msg[0]) }}">
+                  <button type="submit" class="delete-btn">Supprimer</button>
+                </form>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
@@ -209,7 +225,6 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>&copy; 2025 CJBAT - Tous droits réservés</p>
@@ -220,29 +235,6 @@
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     toggle.addEventListener('click', () => nav.classList.toggle('active'));
-
-    // Suppression dynamique d’un message
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.delete-btn').forEach(button => {
-        button.addEventListener('click', function() {
-          const messageId = this.dataset.id;
-          if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
-            fetch(`/admin/messages/delete/${messageId}/`, {
-              method: 'POST'
-            })
-            .then(r => r.json())
-            .then(data => {
-              if (data.success) {
-                document.querySelector(`#message-${messageId}`).remove();
-              } else {
-                alert('Erreur lors de la suppression.');
-              }
-            })
-            .catch(() => alert('Erreur réseau.'));
-          }
-        });
-      });
-    });
   </script>
 </body>
 </html>
